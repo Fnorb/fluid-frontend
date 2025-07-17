@@ -1,1 +1,23 @@
 @import "tailwindcss";
+
+@theme {
+  /* Farben für Text (Text-Color Utilities) */
+  --color-blue-light: #85d7ff;
+  --color-blue-DEFAULT: #1fb6ff;
+  --color-blue-dark: #009eeb;
+  --color-green-lightest: #f1fffa;
+  --color-green-light: #ccfccb;
+  --color-green-mid: #96e6b3;
+  --color-green-dark: #568259;
+  --color-green-near-black: #464e47;
+
+  /* Beispiel für die Verwendung mit Hintergründen (Background-Color Utilities) */
+  /* --background-blue-light: #85d7ff; */
+  /* --background-blue-DEFAULT: #1fb6ff; */
+  /* --background-blue-dark: #009eeb; */
+
+  /* Sie können auch die Standard-Rotfarbe überschreiben oder definieren, wenn sie nicht funktioniert */
+  --color-red-500: oklch(
+    65.1% 0.209 29.355
+  ); /* Dies ist ein Beispiel für Red-500 in OKLCH */
+}
