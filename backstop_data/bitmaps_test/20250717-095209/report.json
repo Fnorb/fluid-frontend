@@ -1,0 +1,74 @@
+{
+  "testSuite": "BackstopJS",
+  "tests": [
+    {
+      "pair": {
+        "reference": "..\\bitmaps_reference\\web-pres-lieb_Landing_Page_0_document_0_desktop.png",
+        "test": "..\\bitmaps_test\\20250717-095209\\web-pres-lieb_Landing_Page_0_document_0_desktop.png",
+        "selector": "document",
+        "fileName": "web-pres-lieb_Landing_Page_0_document_0_desktop.png",
+        "label": "Landing Page",
+        "requireSameDimensions": true,
+        "misMatchThreshold": 0.1,
+        "url": "http://localhost:5173",
+        "expect": 0,
+        "viewportLabel": "desktop",
+        "engineErrorMsg": "net::ERR_CONNECTION_REFUSED at http://localhost:5173",
+        "error": "Reference file not found C:\\Programming\\web-pres-lieb\\backstop_data\\bitmaps_reference\\web-pres-lieb_Landing_Page_0_document_0_desktop.png"
+      },
+      "status": "fail"
+    },
+    {
+      "pair": {
+        "reference": "..\\bitmaps_reference\\web-pres-lieb_Landing_Page_0_document_1_mobile.png",
+        "test": "..\\bitmaps_test\\20250717-095209\\web-pres-lieb_Landing_Page_0_document_1_mobile.png",
+        "selector": "document",
+        "fileName": "web-pres-lieb_Landing_Page_0_document_1_mobile.png",
+        "label": "Landing Page",
+        "requireSameDimensions": true,
+        "misMatchThreshold": 0.1,
+        "url": "http://localhost:5173",
+        "expect": 0,
+        "viewportLabel": "mobile",
+        "engineErrorMsg": "net::ERR_CONNECTION_REFUSED at http://localhost:5173",
+        "error": "Reference file not found C:\\Programming\\web-pres-lieb\\backstop_data\\bitmaps_reference\\web-pres-lieb_Landing_Page_0_document_1_mobile.png"
+      },
+      "status": "fail"
+    },
+    {
+      "pair": {
+        "reference": "..\\bitmaps_reference\\web-pres-lieb_Header_only_0_header_0_desktop.png",
+        "test": "..\\bitmaps_test\\20250717-095209\\web-pres-lieb_Header_only_0_header_0_desktop.png",
+        "selector": "header",
+        "fileName": "web-pres-lieb_Header_only_0_header_0_desktop.png",
+        "label": "Header only",
+        "requireSameDimensions": true,
+        "misMatchThreshold": 0.05,
+        "url": "http://localhost:5173",
+        "expect": 0,
+        "viewportLabel": "desktop",
+        "engineErrorMsg": "net::ERR_CONNECTION_REFUSED at http://localhost:5173",
+        "error": "Reference file not found C:\\Programming\\web-pres-lieb\\backstop_data\\bitmaps_reference\\web-pres-lieb_Header_only_0_header_0_desktop.png"
+      },
+      "status": "fail"
+    },
+    {
+      "pair": {
+        "reference": "..\\bitmaps_reference\\web-pres-lieb_Header_only_0_header_1_mobile.png",
+        "test": "..\\bitmaps_test\\20250717-095209\\web-pres-lieb_Header_only_0_header_1_mobile.png",
+        "selector": "header",
+        "fileName": "web-pres-lieb_Header_only_0_header_1_mobile.png",
+        "label": "Header only",
+        "requireSameDimensions": true,
+        "misMatchThreshold": 0.05,
+        "url": "http://localhost:5173",
+        "expect": 0,
+        "viewportLabel": "mobile",
+        "engineErrorMsg": "net::ERR_CONNECTION_REFUSED at http://localhost:5173",
+        "error": "Reference file not found C:\\Programming\\web-pres-lieb\\backstop_data\\bitmaps_reference\\web-pres-lieb_Header_only_0_header_1_mobile.png"
+      },
+      "status": "fail"
+    }
+  ],
+  "id": "web-pres-lieb"
+}

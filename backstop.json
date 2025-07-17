@@ -1,0 +1,41 @@
+{
+  "id": "web-pres-lieb",
+  "viewports": [
+    {
+      "label": "desktop",
+      "width": 1280,
+      "height": 800
+    },
+    {
+      "label": "mobile",
+      "width": 375,
+      "height": 667
+    }
+  ],
+  "scenarios": [
+    {
+      "label": "Landing Page",
+      "url": "http://localhost:5173",
+      "selectors": ["document"],
+      "misMatchThreshold": 0.1
+    },
+    {
+      "label": "Header only",
+      "url": "http://localhost:5173",
+      "selectors": ["header"],
+      "misMatchThreshold": 0.05
+    }
+  ],
+  "paths": {
+    "bitmaps_reference": "backstop_data/bitmaps_reference",
+    "bitmaps_test": "backstop_data/bitmaps_test",
+    "html_report": "backstop_data/html_report",
+    "ci_report": "backstop_data/ci_report"
+  },
+  "report": ["browser"],
+  "engine": "puppeteer",
+  "engineOptions": {
+    "args": ["--no-sandbox"]
+  },
+  "debug": false
+}
