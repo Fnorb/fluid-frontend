@@ -1,5 +1,5 @@
 <template>
-  <div class="fixed inset-0 z-0 pointer-events-none shadow-xl/20">
+  <div class="fixed inset-0 pointer-events-none shadow-xl/20">
     <!-- Normal Layer -->
     <div ref="normalLayer">
       <div v-for="(square, index) in squares" :key="'normal-' + index"

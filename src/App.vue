@@ -1,8 +1,8 @@
 <template>
-  <div class="min-h-screen text-white">
-    <Header />
+  <div class="min-h-screen">
     <GooeySquares />
     <Content />
+    <Header />
   </div>
 </template>
 
