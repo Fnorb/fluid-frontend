@@ -3,7 +3,7 @@
     <!-- Normal Layer -->
     <div ref="normalLayer">
       <div v-for="(square, index) in squares" :key="'normal-' + index"
-        class="square normal absolute w-10 h-10 bg-green-300"
+        class="square normal absolute w-20 h-20 bg-green-300"
         :style="{ transform: `translate(${square.x}px, ${square.y}px) rotate(${square.rotation}deg)` }" />
     </div>
 
@@ -11,7 +11,7 @@
     <div ref="gooeyLayer" style="filter: url(#gooey);">
       <div class="absolute top-0 left-0 w-[180px] h-16 bg-green-300"></div>
       <div v-for="(square, index) in squares" :key="'gooey-' + index"
-        class="square gooey absolute w-10 h-10 bg-green-300"
+        class="square gooey absolute w-20 h-20 bg-green-300"
         :style="{ transform: `translate(${square.x}px, ${square.y}px) rotate(${square.rotation}deg)` }" />
     </div>
 
@@ -106,7 +106,7 @@ function animateSquare(elNormal: HTMLElement, elGooey: HTMLElement, startX: numb
   const squareHeight = 40
   const endY = -squareHeight
   const distance = startY - endY
-  const BASE_SPEED = 80 // px/s
+  const BASE_SPEED = 120 // px/s
 
   const speed = BASE_SPEED * depthFactor
   const duration = distance / speed
