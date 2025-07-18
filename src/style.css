@@ -1,23 +1,75 @@
+/* src/style.css */
+
+@import "../node_modules/normalize.css/normalize.css";
 @import "tailwindcss";
 
+/* Move your global box-sizing and image resets here, after Tailwind,
+   if they are still being overridden by Tailwind's base.
+   Otherwise, if they work fine above, you can leave them there. */
+*,
+::before,
+::after {
+  box-sizing: border-box;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* src/style.css */
+
+@import "../node_modules/normalize.css/normalize.css";
+@import "tailwindcss";
+
+/* Global box-sizing and image resets - keep these here */
+*,
+::before,
+::after {
+  box-sizing: border-box;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
 @theme {
-  /* Farben für Text (Text-Color Utilities) */
-  --color-blue-light: #85d7ff;
-  --color-blue-DEFAULT: #1fb6ff;
-  --color-blue-dark: #009eeb;
-  --color-green-lightest: #f1fffa;
+  --font-montserrat: "Montserrat", sans-serif;
+
+  --font-sans: var(--font-montserrat);
+
+  --default-font-family: var(--font-sans);
+
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
+
+  /*color definitions */
+  --color-green-300: #ccfccb;
+  --color-green-400: #96e6b3;
+  --color-emerald-700: #568259;
+  --color-emerald-900: #464e47;
   --color-green-light: #ccfccb;
-  --color-green-mid: #96e6b3;
   --color-green-dark: #568259;
-  --color-green-near-black: #464e47;
+  --color-red-500: oklch(65.1% 0.209 29.355);
 
-  /* Beispiel für die Verwendung mit Hintergründen (Background-Color Utilities) */
-  /* --background-blue-light: #85d7ff; */
-  /* --background-blue-DEFAULT: #1fb6ff; */
-  /* --background-blue-dark: #009eeb; */
-
-  /* Sie können auch die Standard-Rotfarbe überschreiben oder definieren, wenn sie nicht funktioniert */
-  --color-red-500: oklch(
-    65.1% 0.209 29.355
-  ); /* Dies ist ein Beispiel für Red-500 in OKLCH */
+  /* spacing, breakpoint, text-size, font-weight definitions */
+  --spacing: 0.25rem;
+  --breakpoint-lg: 64rem;
+  --text-lg: 1.125rem;
+  --text-lg--line-height: calc(1.75 / 1.125);
+  --text-xl: 1.25rem;
+  --text-xl--line-height: calc(1.75 / 1.25);
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
 }
