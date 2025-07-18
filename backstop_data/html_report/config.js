@@ -4,7 +4,7 @@ report({
     {
       "pair": {
         "reference": "..\\bitmaps_reference\\web-pres-lieb_Landing_Page_0_document_0_desktop.png",
-        "test": "..\\bitmaps_test\\20250717-174555\\web-pres-lieb_Landing_Page_0_document_0_desktop.png",
+        "test": "..\\bitmaps_test\\20250718-141657\\web-pres-lieb_Landing_Page_0_document_0_desktop.png",
         "selector": "document",
         "fileName": "web-pres-lieb_Landing_Page_0_document_0_desktop.png",
         "label": "Landing Page",
@@ -19,18 +19,18 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 2.533580043859649,
-          "misMatchPercentage": "2.53",
-          "analysisTime": 51
+          "rawMisMatchPercentage": 6.075390625000001,
+          "misMatchPercentage": "6.08",
+          "analysisTime": 39
         },
-        "diffImage": "..\\bitmaps_test\\20250717-174555\\failed_diff_web-pres-lieb_Landing_Page_0_document_0_desktop.png"
+        "diffImage": "..\\bitmaps_test\\20250718-141657\\failed_diff_web-pres-lieb_Landing_Page_0_document_0_desktop.png"
       },
       "status": "fail"
     },
     {
       "pair": {
         "reference": "..\\bitmaps_reference\\web-pres-lieb_Landing_Page_0_document_1_mobile.png",
-        "test": "..\\bitmaps_test\\20250717-174555\\web-pres-lieb_Landing_Page_0_document_1_mobile.png",
+        "test": "..\\bitmaps_test\\20250718-141657\\web-pres-lieb_Landing_Page_0_document_1_mobile.png",
         "selector": "document",
         "fileName": "web-pres-lieb_Landing_Page_0_document_1_mobile.png",
         "label": "Landing Page",
@@ -45,18 +45,18 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 2.252366255144033,
-          "misMatchPercentage": "2.25",
-          "analysisTime": 53
+          "rawMisMatchPercentage": 9.761477572559366,
+          "misMatchPercentage": "9.76",
+          "analysisTime": 26
         },
-        "diffImage": "..\\bitmaps_test\\20250717-174555\\failed_diff_web-pres-lieb_Landing_Page_0_document_1_mobile.png"
+        "diffImage": "..\\bitmaps_test\\20250718-141657\\failed_diff_web-pres-lieb_Landing_Page_0_document_1_mobile.png"
       },
       "status": "fail"
     },
     {
       "pair": {
         "reference": "..\\bitmaps_reference\\web-pres-lieb_Header_only_0_header_0_desktop.png",
-        "test": "..\\bitmaps_test\\20250717-174555\\web-pres-lieb_Header_only_0_header_0_desktop.png",
+        "test": "..\\bitmaps_test\\20250718-141657\\web-pres-lieb_Header_only_0_header_0_desktop.png",
         "selector": "header",
         "fileName": "web-pres-lieb_Header_only_0_header_0_desktop.png",
         "label": "Header only",
@@ -66,23 +66,20 @@ report({
         "expect": 0,
         "viewportLabel": "desktop",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
             "width": 0,
-            "height": -4
+            "height": 0
           },
-          "rawMisMatchPercentage": 0.673828125,
-          "misMatchPercentage": "0.67",
-          "analysisTime": 17
-        },
-        "diffImage": "..\\bitmaps_test\\20250717-174555\\failed_diff_web-pres-lieb_Header_only_0_header_0_desktop.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     },
     {
       "pair": {
         "reference": "..\\bitmaps_reference\\web-pres-lieb_Header_only_0_header_1_mobile.png",
-        "test": "..\\bitmaps_test\\20250717-174555\\web-pres-lieb_Header_only_0_header_1_mobile.png",
+        "test": "..\\bitmaps_test\\20250718-141657\\web-pres-lieb_Header_only_0_header_1_mobile.png",
         "selector": "header",
         "fileName": "web-pres-lieb_Header_only_0_header_1_mobile.png",
         "label": "Header only",
@@ -92,18 +89,15 @@ report({
         "expect": 0,
         "viewportLabel": "mobile",
         "diff": {
-          "isSameDimensions": false,
+          "isSameDimensions": true,
           "dimensionDifference": {
-            "width": 1,
-            "height": -4
+            "width": 0,
+            "height": 0
           },
-          "rawMisMatchPercentage": 7.608876329787234,
-          "misMatchPercentage": "7.61",
-          "analysisTime": 11
-        },
-        "diffImage": "..\\bitmaps_test\\20250717-174555\\failed_diff_web-pres-lieb_Header_only_0_header_1_mobile.png"
+          "misMatchPercentage": "0.00"
+        }
       },
-      "status": "fail"
+      "status": "pass"
     }
   ],
   "id": "web-pres-lieb"
