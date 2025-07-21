@@ -1,22 +1,25 @@
 <template>
-  <div class="fixed inset-0 pointer-events-none shadow-xl/20">
+  <div class="fixed inset-0 pointer-events-none"
+    style="filter: drop-shadow(0px 0px 61px #19e7c166) drop-shadow(0px 0px 12px #19e7c1ff)">
+    <!--<div class="fixed inset-0 pointer-events-none" style="filter: drop-shadow(0px 0px 12px #19e7c1ff)">-->
+
     <!-- Normal Layer -->
     <div ref="normalLayer">
       <div v-for="(square, index) in squares" :key="'normal-' + index"
-        class="square normal absolute w-20 h-20 bg-green-300"
+        class="square normal absolute w-20 h-20 bg-teal-300"
         :style="{ transform: `translate(${square.x}px, ${square.y}px) rotate(${square.rotation}deg)` }" />
     </div>
 
     <!-- Gooey Layer -->
     <div ref="gooeyLayer" style="filter: url(#gooey);">
-      <div class="absolute top-0 left-0 w-[180px] h-16 bg-green-300"></div>
+      <div class="absolute top-0 left-0 w-[180px] h-16 bg-teal-300"></div>
       <div v-for="(square, index) in squares" :key="'gooey-' + index"
-        class="square gooey absolute w-20 h-20 bg-green-300"
+        class="square gooey absolute w-20 h-20 bg-teal-300"
         :style="{ transform: `translate(${square.x}px, ${square.y}px) rotate(${square.rotation}deg)` }" />
     </div>
 
   </div>
-  <svg style="display: none;">
+  <svg class="absolute">
     <filter id="gooey">
       <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
       <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0
@@ -154,6 +157,4 @@ function animateSquare(elNormal: HTMLElement, elGooey: HTMLElement, startX: numb
     }
   })
 }
-
-
 </script>

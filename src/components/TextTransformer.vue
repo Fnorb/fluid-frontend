@@ -25,7 +25,7 @@ const hiddenContainerRef = ref<HTMLElement | null>(null)
 const visibleContainerRef = ref<HTMLElement | null>(null)
 const hiddenChars = ref<AnimatedChar[]>([])
 const visibleChars = ref<AnimatedChar[]>([])
-const ANIMATION_DURATION = 1
+const ANIMATION_DURATION = .6
 
 let resizeObserver: ResizeObserver | null = null
 let currentAnimationPromises: Promise<void>[] = []
@@ -182,7 +182,7 @@ const animateChars = () => {
 
                     const controlPoint = {
                         x: (x1 + x2) / 2,
-                        y: (y1 + y2) / 2 - 15 + Math.random() * 10
+                        y: (y1 + y2) / 2 - 10 - Math.random() * 5
                     }
 
                     gsap.to(char.ref!, {

@@ -62,6 +62,9 @@ svg {
   --color-green-light: #ccfccb;
   --color-green-dark: #568259;
   --color-red-500: oklch(65.1% 0.209 29.355);
+  --color-content-left: #090534;
+  --color-content-center: #020818;
+  --color-content-right: #02030d;
 
   /* spacing, breakpoint, text-size, font-weight definitions */
   --spacing: 0.25rem;
