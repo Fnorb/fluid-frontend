@@ -1,13 +1,14 @@
-import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
-import tailwindcss from '@tailwindcss/vite'  // richtiges Plugin
+import { defineConfig } from "vite";
+import vue from "@vitejs/plugin-vue";
+import tailwindcss from "@tailwindcss/vite";
 
 export default defineConfig({
-  plugins: [
-    vue(),
-    tailwindcss(),  // funktioniert gleich wie offizielles Tutorial :contentReference[oaicite:5]{index=5}
-  ],
+  // Add this 'base' property for GitHub Pages deployment
+  // Replace 'web-pres-lieb' with your actual repository name if it changes
+  base: "/web-pres-lieb/", // <--- ADD THIS LINE
+
+  plugins: [vue(), tailwindcss()],
   test: {
-    environment: 'jsdom',
-  }
-})
+    environment: "jsdom",
+  },
+});
