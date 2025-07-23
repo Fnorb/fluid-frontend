@@ -80,21 +80,13 @@ const techs = [
   },
 ];
 
-// Initialize currentText with the description of the first tech
-const currentText = ref(techs[0].description) // Directly set to the first tech's description
-const activeTech = ref<string | null>(techs[0].name); // Directly set the first tech as active
+const currentText = ref(techs[0].description)
+const activeTech = ref<string | null>(techs[0].name);
 
 const selectTech = (tech: { name: string; description: string }) => {
   currentText.value = tech.description;
   activeTech.value = tech.name;
 };
-
-// No need for onMounted logic here, as initial state is set directly
-// onMounted(() => {
-//   if (techs.length > 0) {
-//     selectTech(techs[0])
-//   }
-// });
 </script>
 
 <style scoped>
