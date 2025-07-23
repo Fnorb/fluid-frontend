@@ -90,11 +90,11 @@ const selectTech = (tech: { name: string; description: string }) => {
   grid-template-columns: auto 1fr;
   grid-template-areas:
     'header header'
-    '. content'
-    '. content'
-    '. content'
-    '. content'
-    '. content';
+    'buttons content'
+    'buttons content'
+    'buttons content'
+    'buttons content'
+    'buttons content';
 }
 
 @media (max-width: 768px) and (orientation: portrait) {
@@ -114,7 +114,6 @@ const selectTech = (tech: { name: string; description: string }) => {
   }
 
   button {
-    grid-area: buttons;
     flex-grow: 1;
   }
 }
