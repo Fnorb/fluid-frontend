@@ -1,16 +1,13 @@
 <template>
   <div class="max-w-[1000px] w-full mx-auto mt-32 px-4">
-    <div class="grid
+    <div class="grid-container grid
              grid-rows-auto
-             grid-cols-[auto_1fr]
-             gap-[13px]
-             grid-flow-row"
-      style="grid-template-areas: 'header header' '. content' '. content' '. content' '. content' '. content'">
+             gap-[13px]">
       <h2 class="[grid-area:header] text-3xl font-bold text-white mb-4">
         Discover Technologies
       </h2>
-
-      <button v-for="tech in techs" :key="tech.name" class="button-fallback relative px-6 py-3 text-white font-semibold
+      <div class="button-container contents">
+        <button v-for="tech in techs" :key="tech.name" class="buttons button-fallback relative px-6 py-3 text-white font-semibold
          bg-[rgba(255,255,255,0.03)]
          backdrop-blur-md border border-none
          [--squircle-radius:16]
@@ -21,28 +18,21 @@
          overflow-hidden cursor-pointer group transition-all duration-300 ease-in-out
          justify-self-stretch filter
          bg-[linear-gradient(to_right,rgba(0,128,128,0.2)_0%,rgba(0,128,128,0.0)_30%)]"
-        :class="{ 'brightness-150': activeTech === tech.name }" @click="selectTech(tech)">
-        <span
-          class="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.2),rgba(255,255,255,0.1))] opacity-0 group-hover:opacity-30 transition-opacity duration-300 ease-in-out pointer-events-none"></span>
+          :class="{ 'brightness-150': activeTech === tech.name }" @click="selectTech(tech)">
+          <span
+            class="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.2),rgba(255,255,255,0.1))] opacity-0 group-hover:opacity-30 transition-opacity duration-300 ease-in-out pointer-events-none"></span>
 
-        <span class="relative z-10">{{ tech.name }}</span>
-      </button>
-
+          <span class="relative z-10">{{ tech.name }}</span>
+        </button>
+      </div>
       <div class="
-          grid-column-start-2
-          grid-column-end-3
-          grid-row-start-2
-          grid-row-end-[-1]
-          col-start-2
-          row-start-2 
-          row-span-full 
-          ml-4 
-          p-4 
+          [grid-area:content]
+          p-4
           bg-[rgba(255,255,255,0.05)]
           rounded-lg
           backdrop-blur-sm
         ">
-        <TextTransformer :text="currentText" class="[grid-area:content] text-teal-300" />
+        <TextTransformer :text="currentText" class="[grid-area:content] text-white" />
       </div>
     </div>
   </div>
@@ -93,6 +83,39 @@ const selectTech = (tech: { name: string; description: string }) => {
 @supports not (mask-image: paint(squircle)) {
   .button-fallback {
     border-radius: 16px;
+  }
+}
+
+.grid-container {
+  grid-template-columns: auto 1fr;
+  grid-template-areas:
+    'header header'
+    '. content'
+    '. content'
+    '. content'
+    '. content'
+    '. content';
+}
+
+@media (max-width: 768px) and (orientation: portrait) {
+  .grid-container {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      'header'
+      'buttons'
+      'content';
+  }
+
+  .button-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  button {
+    grid-area: buttons;
+    flex-grow: 1;
   }
 }
 </style>
