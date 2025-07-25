@@ -1,3 +1,16 @@
+<template>
+    <div class="relative w-full h-full">
+        <div ref="hiddenContainerRef" class="w-fit whitespace-nowrap invisible"></div>
+
+        <div ref="visibleContainerRef" class="absolute inset-0 flex">
+            <span v-for="char in visibleChars" :key="char.id" class="inline-block absolute">
+                {{ char.content }}
+            </span>
+        </div>
+    </div>
+</template>
+
+
 <script setup lang="ts">
 import { ref, onMounted, nextTick, onUnmounted, watch } from 'vue'
 import gsap from 'gsap'
@@ -32,13 +45,12 @@ let currentAnimationPromises: Promise<void>[] = []
 
 const generatedId = () => Math.random().toString(36).substring(2, 9)
 
-
 const calculatePositions = async () => {
     if (!hiddenContainerRef.value || !visibleContainerRef.value || props.text.length === 0) {
         return
     }
 
-    const hiddenSpans = Array.from(hiddenContainerRef.value.children) as HTMLElement[]
+    hiddenContainerRef.value.innerHTML = ''
     const parentContainerRect = visibleContainerRef.value.parentElement?.getBoundingClientRect()
 
     if (!parentContainerRect) {
@@ -46,12 +58,33 @@ const calculatePositions = async () => {
         return
     }
 
+
+    const availableWidth = parentContainerRect.width
+    const charsToPlace = props.text.split('').map(char => ({
+        content: char === ' ' ? '\u00A0' : char,
+        originalChar: char
+    }))
+
+    for (let i = 0; i < charsToPlace.length; i++) {
+        const charData = charsToPlace[i]
+
+        const charSpan = document.createElement('span')
+        charSpan.textContent = charData.content
+        hiddenContainerRef.value.appendChild(charSpan)
+        //await nextTick();
+
+        const newWidth = hiddenContainerRef.value.clientWidth
+        if (newWidth > availableWidth) {
+            insertBreak(i)
+        }
+    }
+    const hiddenSpans = Array.from(hiddenContainerRef.value.children) as HTMLElement[]
     const newHiddenChars: AnimatedChar[] = []
+
     hiddenSpans.forEach((span, index) => {
         const spanRect = span.getBoundingClientRect()
         const relativeX = spanRect.left - parentContainerRect.left
         const relativeY = spanRect.top - parentContainerRect.top
-
         const existingChar = hiddenChars.value.find(c => c.id === span.dataset.id)
 
         newHiddenChars.push({
@@ -66,6 +99,27 @@ const calculatePositions = async () => {
     })
 
     hiddenChars.value = newHiddenChars
+}
+
+const insertBreak = (index: number) => {
+    if (hiddenContainerRef.value !== null) {
+        const spans = Array.from(hiddenContainerRef.value.children).slice(0, index + 1)
+        const lastNbspIndex = findLastNbspIndex(spans)
+        const targetSpan = spans[lastNbspIndex]
+        const lineBreak = document.createElement('span')
+        lineBreak.className = 'w-full h-0 block'
+        targetSpan.after(lineBreak)
+    }
+}
+
+function findLastNbspIndex(spans: Element[]) {
+    const reversedIndex = spans
+        .slice()
+        .reverse()
+        .findIndex(span => span.textContent === '\u00A0')
+
+    if (reversedIndex === -1) return -1
+    return spans.length - 1 - reversedIndex
 }
 
 const applyPositions = async () => {
@@ -98,6 +152,7 @@ const applyPositions = async () => {
 }
 
 const calculateAndApplyPositions = async () => {
+    console.log("calc and apply")
     calculatePositions()
     await nextTick()
     applyPositions()
@@ -118,15 +173,21 @@ onMounted(async () => {
     }
 
     if (hiddenContainerRef.value) {
-        resizeObserver = new ResizeObserver(entries => {
-            for (let entry of entries) {
-                if (entry.target === hiddenContainerRef.value) {
-                    debouncedRecalculate()
-                }
-            }
-        })
+        const parentElement = hiddenContainerRef.value.parentElement
 
-        resizeObserver.observe(hiddenContainerRef.value)
+        if (parentElement) {
+            resizeObserver = new ResizeObserver(entries => {
+                for (let entry of entries) {
+                    if (entry.target === parentElement) {
+                        debouncedRecalculate()
+                    }
+                }
+            })
+
+            resizeObserver.observe(parentElement)
+        } else {
+            console.warn("Parent element for hiddenContainerRef not found on mount. ResizeObserver not set up.")
+        }
     } else {
         console.warn("hiddenContainerRef not found on mount. Cannot set up ResizeObserver.")
     }
@@ -267,7 +328,7 @@ const distance = (a: { x: number, y: number }, b: { x: number, y: number }) => {
     const dx = a.x - b.x
     const dy = a.y - b.y
     return Math.sqrt(dx * dx + dy * dy)
-};
+}
 
 watch(() => props.text, async (newText, oldText) => {
     if (newText === oldText) {
@@ -311,19 +372,3 @@ watch(() => props.text, async (newText, oldText) => {
     }
 })
 </script>
-
-<template>
-    <div class="relative w-full h-full">
-        <div ref="hiddenContainerRef" class="flex invisible flex-wrap">
-            <span v-for="char in hiddenChars" :key="char.id" class="inline-block" :data-id="char.id">
-                {{ char.content }}
-            </span>
-        </div>
-
-        <div ref="visibleContainerRef" class="absolute inset-0 flex">
-            <span v-for="char in visibleChars" :key="char.id" class="inline-block absolute">
-                {{ char.content }}
-            </span>
-        </div>
-    </div>
-</template>
