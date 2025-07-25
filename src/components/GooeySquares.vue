@@ -1,6 +1,6 @@
 <template>
-  <div class="w-[180px]" style="filter: drop-shadow(0px 0px 61px #19e7c166) drop-shadow(0px 0px 12px #19e7c1ff)">
-    <!--<div class="fixed inset-0 pointer-events-none" style="filter: drop-shadow(0px 0px 12px #19e7c1ff)">-->
+  <!--<div class="w-[180px]" style="filter: drop-shadow(0px 0px 61px #19e7c166) drop-shadow(0px 0px 12px #19e7c1ff)">-->
+  <div class="w-[180px]" style="filter: drop-shadow(0px 0px 12px #19e7c1ff)">
 
     <!-- Normal Layer -->
     <div ref="normalLayer">

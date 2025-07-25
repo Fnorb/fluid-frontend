@@ -34,11 +34,17 @@ interface AnimatedChar {
     assigned?: boolean
 }
 
+interface MotionPathResult {
+    path: { x: number, y: number }[],
+    curviness: number
+}
+
+
 const hiddenContainerRef = ref<HTMLElement | null>(null)
 const visibleContainerRef = ref<HTMLElement | null>(null)
 const hiddenChars = ref<AnimatedChar[]>([])
 const visibleChars = ref<AnimatedChar[]>([])
-const ANIMATION_DURATION = .6
+const ANIMATION_DURATION = .8
 
 let resizeObserver: ResizeObserver | null = null
 let currentAnimationPromises: Promise<void>[] = []
@@ -100,6 +106,52 @@ const calculatePositions = async () => {
 
     hiddenChars.value = newHiddenChars
 }
+
+const calculateMotionPath = (
+    x1: number, y1: number,
+    x2: number, y2: number
+): MotionPathResult => {
+    const distanceTraveled = distance({ x: x1, y: y1 }, { x: x2, y: y2 });
+
+    let controlPoint: { x: number, y: number };
+    let curvinessValue = 1;
+
+    if (distanceTraveled < 40) {
+        controlPoint = {
+            x: (x1 + x2) / 2,
+            y: (y1 + y2) / 2 - (15 + Math.random() * 8)
+        };
+        curvinessValue = 1.25;
+    } else {
+        const midX = (x1 + x2) / 2;
+        const midY = (y1 + y2) / 2;
+
+        const dx = x2 - x1;
+        const dy = y2 - y1;
+
+        const perpendicularDx = -dy;
+        const perpendicularDy = dx;
+
+        const length = Math.sqrt(perpendicularDx * perpendicularDx + perpendicularDy * perpendicularDy);
+        const normalX = length === 0 ? 0 : perpendicularDx / length;
+        const normalY = length === 0 ? 0 : perpendicularDy / length;
+
+        const arcHeight = Math.min(20, distanceTraveled * 0.10);
+        const randomOffsetFactor = (Math.random() - 0.5) * .6;
+        const finalArcHeight = arcHeight * (1 + randomOffsetFactor);
+
+        controlPoint = {
+            x: midX + normalX * finalArcHeight,
+            y: midY + normalY * finalArcHeight
+        };
+        curvinessValue = 1;
+    }
+
+    return {
+        path: [{ x: x1, y: y1 }, controlPoint, { x: x2, y: y2 }],
+        curviness: curvinessValue
+    };
+};
 
 const insertBreak = (index: number) => {
     if (hiddenContainerRef.value !== null) {
@@ -212,7 +264,7 @@ const animateChars = () => {
                     gsap.to(char.ref!, {
                         duration: ANIMATION_DURATION,
                         opacity: 0,
-                        ease: "power2.out",
+                        ease: "power2.inOut",
                         onComplete: () => {
                             resolve()
                         }
@@ -227,7 +279,7 @@ const animateChars = () => {
                     gsap.to(char.ref!, {
                         duration: ANIMATION_DURATION,
                         opacity: 1,
-                        ease: "power2.out",
+                        ease: "power2.inOut",
                         onComplete: () => {
                             char.task = 'show'
                             resolve()
@@ -240,17 +292,14 @@ const animateChars = () => {
                     const { x: x1, y: y1 } = char.origin!
                     const { x: x2, y: y2 } = char.destination!
 
-                    const controlPoint = {
-                        x: (x1 + x2) / 2,
-                        y: (y1 + y2) / 2 - 10 - Math.random() * 5
-                    }
+                    const { path, curviness } = calculateMotionPath(x1, y1, x2, y2);
 
                     gsap.to(char.ref!, {
                         duration: ANIMATION_DURATION,
-                        ease: 'power2.out',
+                        ease: 'power1.inOut',
                         motionPath: {
-                            path: [{ x: x1, y: y1 }, controlPoint, { x: x2, y: y2 }],
-                            curviness: 1.25,
+                            path: path,
+                            curviness: curviness,
                             autoRotate: false
                         },
                         onComplete: () => {
