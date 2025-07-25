@@ -74,6 +74,7 @@ const calculatePositions = async () => {
         //await nextTick();
 
         const newWidth = hiddenContainerRef.value.clientWidth
+        console.log(newWidth, availableWidth)
         if (newWidth > availableWidth) {
             insertBreak(i)
         }
@@ -103,7 +104,7 @@ const calculatePositions = async () => {
 
 const insertBreak = (index: number) => {
     if (hiddenContainerRef.value !== null) {
-        const spans = Array.from(hiddenContainerRef.value.children).slice(0, index + 1)
+        const spans = Array.from(hiddenContainerRef.value.children).slice(0, index)
         const lastNbspIndex = findLastNbspIndex(spans)
         const targetSpan = spans[lastNbspIndex]
         const lineBreak = document.createElement('span')
@@ -152,7 +153,6 @@ const applyPositions = async () => {
 }
 
 const calculateAndApplyPositions = async () => {
-    console.log("calc and apply")
     calculatePositions()
     await nextTick()
     applyPositions()
