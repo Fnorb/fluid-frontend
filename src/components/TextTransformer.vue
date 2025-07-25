@@ -74,7 +74,6 @@ const calculatePositions = async () => {
         //await nextTick();
 
         const newWidth = hiddenContainerRef.value.clientWidth
-        console.log(newWidth, availableWidth)
         if (newWidth > availableWidth) {
             insertBreak(i)
         }
