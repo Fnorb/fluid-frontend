@@ -77,7 +77,7 @@ const calculatePositions = async () => {
         const charSpan = document.createElement('span')
         charSpan.textContent = charData.content
         hiddenContainerRef.value.appendChild(charSpan)
-        //await nextTick();
+        await nextTick();
 
         const newWidth = hiddenContainerRef.value.clientWidth
         if (newWidth > availableWidth) {
@@ -147,6 +147,7 @@ const calculateMotionPath = (
         curvinessValue = 1;
     }
 
+    console.log(x1, y1, x2, y2, curvinessValue)
     return {
         path: [{ x: x1, y: y1 }, controlPoint, { x: x2, y: y2 }],
         curviness: curvinessValue
