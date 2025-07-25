@@ -1,5 +1,5 @@
 <template>
-  <div class="max-w-[1000px] w-full mx-auto mt-32 px-4">
+  <div class="max-w-[1000px] w-full mx-auto pt-32 px-4">
     <div class="grid-container grid
              grid-rows-auto
              gap-[13px]">
