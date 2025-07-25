@@ -3,11 +3,12 @@
     <div class="grid-container grid
              grid-rows-auto
              gap-[13px]">
-      <h2 class="[grid-area:header] text-3xl font-bold text-white mb-4">
+      <h2 class="[grid-area:header] text-3xl font-bold text-white mb-4 z-10">
         Discover Technologies
       </h2>
       <div class="button-container contents">
         <button v-for="tech in techs" :key="tech.name" class="buttons button-fallback relative px-6 py-3 text-white font-semibold
+         bg-black/30
          bg-[rgba(255,255,255,0.03)]
          backdrop-blur-md border border-none
          [--squircle-radius:16]
@@ -28,6 +29,7 @@
       <div class="
           [grid-area:content]
           p-4
+          bg-black/30
           bg-[rgba(255,255,255,0.05)]
           rounded-lg
           backdrop-blur-sm
