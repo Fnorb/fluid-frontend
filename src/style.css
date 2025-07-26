@@ -1,37 +1,12 @@
 /* src/style.css */
 
-@import "../node_modules/normalize.css/normalize.css";
-@import "tailwindcss";
-
-/* Move your global box-sizing and image resets here, after Tailwind,
-   if they are still being overridden by Tailwind's base.
-   Otherwise, if they work fine above, you can leave them there. */
-*,
-::before,
-::after {
-  box-sizing: border-box;
-}
-
-img,
-picture,
-video,
-canvas,
-svg {
-  display: block;
-  max-width: 100%;
-  height: auto;
-}
-
-/* src/style.css */
-
-@import "../node_modules/normalize.css/normalize.css";
 @import "tailwindcss";
 
 /* Global box-sizing and image resets - keep these here */
 *,
 ::before,
 ::after {
-  box-sizing: border-box;
+  box-sizing: border-box; /* */
 }
 
 img,
@@ -39,18 +14,15 @@ picture,
 video,
 canvas,
 svg {
-  display: block;
-  max-width: 100%;
-  height: auto;
+  display: block; /* */
+  max-width: 100%; /* */
+  height: auto; /* */
 }
 
 @theme {
   --font-montserrat: "Montserrat", sans-serif;
-
   --font-sans: var(--font-montserrat);
-
   --default-font-family: var(--font-sans);
-
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
     "Liberation Mono", "Courier New", monospace;
 

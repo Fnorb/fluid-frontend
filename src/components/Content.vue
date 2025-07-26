@@ -4,7 +4,7 @@
              grid-rows-auto
              gap-[13px]">
       <h2 class="[grid-area:header] text-3xl font-bold text-white mb-4 z-10">
-        Discover Technologies
+        Tech Stack Overview
       </h2>
       <div class="button-container contents">
         <button v-for="tech in techs" :key="tech.name" class="buttons button-fallback relative px-6 py-3 text-white font-semibold
