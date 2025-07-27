@@ -7,7 +7,7 @@
         Tech Stack Overview
       </h2>
       <div class="button-container contents">
-        <button v-for="tech in techs" :key="tech.name" class="buttons button-fallback relative px-6 py-3 text-white font-semibold
+        <button v-for="tech in techs" :key="tech.name" class="buttons button-fallback relative px-6 py-3 text-teal-200 font-semibold
          bg-[rgba(255,255,255,0.03)]
          backdrop-blur-md border border-none
          [--squircle-radius:16]
