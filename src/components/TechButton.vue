@@ -1,0 +1,38 @@
+<template>
+    <button class="buttons button-fallback relative px-6 py-3 text-teal-200 font-semibold
+         bg-[rgba(255,255,255,0.03)]
+         backdrop-blur-md border border-none
+         [--squircle-radius:16]
+         [--squircle-smooth:1.6]
+         [mask-image:paint(squircle)]
+         [mask-repeat:no-repeat]
+         [mask-size:100%_100%]
+         overflow-hidden cursor-pointer group transition-all duration-300 ease-in-out
+         justify-self-stretch filter
+         bg-[linear-gradient(to_right,rgba(0,128,128,0.2)_0%,rgba(0,128,128,0.0)_30%)]" :class="{
+            'brightness-150': isActive,
+            'bg-black/30': !isActive
+        }" @click="$emit('select')">
+        <span
+            class="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0),rgba(255,255,255,0))] opacity-0 group-hover:opacity-50 transition-opacity duration-300 ease-in-out pointer-events-none"></span>
+
+        <span class="relative z-10">{{ techName }}</span>
+    </button>
+</template>
+
+<script setup lang="ts">
+const props = defineProps<{
+    techName: string;
+    isActive: boolean;
+}>();
+
+const emits = defineEmits(['select']);
+</script>
+
+<style scoped>
+@supports not (mask-image: paint(squircle)) {
+    .button-fallback {
+        border-radius: 16px;
+    }
+}
+</style>
