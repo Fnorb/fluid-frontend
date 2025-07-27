@@ -147,7 +147,6 @@ const calculateMotionPath = (
         curvinessValue = 1;
     }
 
-    console.log(x1, y1, x2, y2, curvinessValue)
     return {
         path: [{ x: x1, y: y1 }, controlPoint, { x: x2, y: y2 }],
         curviness: curvinessValue
@@ -191,7 +190,6 @@ const applyPositions = async () => {
 
     visibleChars.value.forEach((char, index) => {
         const span = visibleSpans[index]
-
         if (span && char.destination) {
             gsap.set(span, {
                 x: char.destination.x,
@@ -205,9 +203,9 @@ const applyPositions = async () => {
 }
 
 const calculateAndApplyPositions = async () => {
-    calculatePositions()
+    await calculatePositions()
     await nextTick()
-    applyPositions()
+    await applyPositions()
 }
 
 
