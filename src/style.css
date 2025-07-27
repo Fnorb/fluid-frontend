@@ -1,5 +1,3 @@
-/* src/style.css */
-
 @import "tailwindcss";
 
 /* Global box-sizing and image resets - keep these here */
@@ -14,12 +12,13 @@ picture,
 video,
 canvas,
 svg {
-  display: block; /* */
-  max-width: 100%; /* */
-  height: auto; /* */
+  display: block;
+  max-width: 100%;
+  height: auto;
 }
 
 @theme {
+  /* fonts */
   --font-montserrat: "Montserrat", sans-serif;
   --font-sans: var(--font-montserrat);
   --default-font-family: var(--font-sans);
@@ -27,13 +26,6 @@ svg {
     "Liberation Mono", "Courier New", monospace;
 
   /*color definitions */
-  --color-green-300: #ccfccb;
-  --color-green-400: #96e6b3;
-  --color-emerald-700: #568259;
-  --color-emerald-900: #464e47;
-  --color-green-light: #ccfccb;
-  --color-green-dark: #568259;
-  --color-red-500: oklch(65.1% 0.209 29.355);
   --color-content-left: #090534;
   --color-content-center: #020818;
   --color-content-right: #02030d;
