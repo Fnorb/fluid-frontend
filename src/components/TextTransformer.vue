@@ -48,10 +48,12 @@ const ANIMATION_DURATION = .8
 
 let resizeObserver: ResizeObserver | null = null
 let currentAnimationPromises: Promise<void>[] = []
+let lastObservedParentWidth: number = 0
 
 const generatedId = () => Math.random().toString(36).substring(2, 9)
 
 const calculatePositions = async () => {
+    console.log("start calc position")
     if (!hiddenContainerRef.value || !visibleContainerRef.value || props.text.length === 0) {
         return
     }
@@ -77,7 +79,7 @@ const calculatePositions = async () => {
         const charSpan = document.createElement('span')
         charSpan.textContent = charData.content
         hiddenContainerRef.value.appendChild(charSpan)
-        await nextTick();
+        await nextTick()
 
         const newWidth = hiddenContainerRef.value.clientWidth
         if (newWidth > availableWidth) {
@@ -105,53 +107,54 @@ const calculatePositions = async () => {
     })
 
     hiddenChars.value = newHiddenChars
+    console.log("end calc position")
 }
 
 const calculateMotionPath = (
     x1: number, y1: number,
     x2: number, y2: number
 ): MotionPathResult => {
-    const distanceTraveled = distance({ x: x1, y: y1 }, { x: x2, y: y2 });
+    const distanceTraveled = distance({ x: x1, y: y1 }, { x: x2, y: y2 })
 
-    let controlPoint: { x: number, y: number };
-    let curvinessValue = 1;
+    let controlPoint: { x: number, y: number }
+    let curvinessValue = 1
 
     if (distanceTraveled < 40) {
         controlPoint = {
             x: (x1 + x2) / 2,
             y: (y1 + y2) / 2 - (15 + Math.random() * 8)
-        };
-        curvinessValue = 1.25;
+        }
+        curvinessValue = 1.25
     } else {
-        const midX = (x1 + x2) / 2;
-        const midY = (y1 + y2) / 2;
+        const midX = (x1 + x2) / 2
+        const midY = (y1 + y2) / 2
 
-        const dx = x2 - x1;
-        const dy = y2 - y1;
+        const dx = x2 - x1
+        const dy = y2 - y1
 
-        const perpendicularDx = -dy;
-        const perpendicularDy = dx;
+        const perpendicularDx = -dy
+        const perpendicularDy = dx
 
-        const length = Math.sqrt(perpendicularDx * perpendicularDx + perpendicularDy * perpendicularDy);
-        const normalX = length === 0 ? 0 : perpendicularDx / length;
-        const normalY = length === 0 ? 0 : perpendicularDy / length;
+        const length = Math.sqrt(perpendicularDx * perpendicularDx + perpendicularDy * perpendicularDy)
+        const normalX = length === 0 ? 0 : perpendicularDx / length
+        const normalY = length === 0 ? 0 : perpendicularDy / length
 
-        const arcHeight = Math.min(20, distanceTraveled * 0.10);
-        const randomOffsetFactor = (Math.random() - 0.5) * .6;
-        const finalArcHeight = arcHeight * (1 + randomOffsetFactor);
+        const arcHeight = Math.min(20, distanceTraveled * 0.10)
+        const randomOffsetFactor = (Math.random() - 0.5) * .6
+        const finalArcHeight = arcHeight * (1 + randomOffsetFactor)
 
         controlPoint = {
             x: midX + normalX * finalArcHeight,
             y: midY + normalY * finalArcHeight
-        };
-        curvinessValue = 1;
+        }
+        curvinessValue = 1
     }
 
     return {
         path: [{ x: x1, y: y1 }, controlPoint, { x: x2, y: y2 }],
         curviness: curvinessValue
-    };
-};
+    }
+}
 
 const insertBreak = (index: number) => {
     if (hiddenContainerRef.value !== null) {
@@ -175,6 +178,7 @@ function findLastNbspIndex(spans: Element[]) {
 }
 
 const applyPositions = async () => {
+    console.log("start apply position")
     if (!visibleContainerRef.value) return
 
     visibleChars.value = hiddenChars.value.map(c => ({
@@ -200,9 +204,11 @@ const applyPositions = async () => {
             char.ref = span
         }
     })
+    console.log("end apply position")
 }
 
 const calculateAndApplyPositions = async () => {
+    console.log("calc and apply")
     await calculatePositions()
     await nextTick()
     await applyPositions()
@@ -226,10 +232,15 @@ onMounted(async () => {
         const parentElement = hiddenContainerRef.value.parentElement
 
         if (parentElement) {
+            lastObservedParentWidth = parentElement.getBoundingClientRect().width
             resizeObserver = new ResizeObserver(entries => {
                 for (let entry of entries) {
                     if (entry.target === parentElement) {
-                        debouncedRecalculate()
+                        const currentParentWidth = entry.contentRect.width
+                        if (currentParentWidth !== lastObservedParentWidth) {
+                            lastObservedParentWidth = currentParentWidth
+                            debouncedRecalculate()
+                        }
                     }
                 }
             })
@@ -242,6 +253,7 @@ onMounted(async () => {
         console.warn("hiddenContainerRef not found on mount. Cannot set up ResizeObserver.")
     }
 
+    console.log("mounted: start calc and apply")
     await calculateAndApplyPositions()
 })
 
@@ -291,7 +303,7 @@ const animateChars = () => {
                     const { x: x1, y: y1 } = char.origin!
                     const { x: x2, y: y2 } = char.destination!
 
-                    const { path, curviness } = calculateMotionPath(x1, y1, x2, y2);
+                    const { path, curviness } = calculateMotionPath(x1, y1, x2, y2)
 
                     gsap.to(char.ref!, {
                         duration: ANIMATION_DURATION,
@@ -398,6 +410,7 @@ watch(() => props.text, async (newText, oldText) => {
         }))
         await nextTick()
 
+        console.log("watcher: start calc and apply")
         await calculateAndApplyPositions()
         animateChars()
     }
