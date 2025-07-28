@@ -27,7 +27,7 @@ const props = withDefaults(defineProps<{
 interface AnimatedChar {
     id: string
     content: string
-    task: 'move' | 'fadeIn' | 'fadeOut' | 'show' | 'hide' | ''
+    task: 'move' | 'fadeIn' | 'fadeOut' | 'hide' | '' | 'appear'
     origin?: { x: number, y: number }
     destination?: { x: number, y: number }
     ref?: HTMLElement | null
@@ -44,16 +44,16 @@ const hiddenContainerRef = ref<HTMLElement | null>(null)
 const visibleContainerRef = ref<HTMLElement | null>(null)
 const hiddenChars = ref<AnimatedChar[]>([])
 const visibleChars = ref<AnimatedChar[]>([])
-const ANIMATION_DURATION = .8
+const ANIMATION_DURATION = 1
 
 let resizeObserver: ResizeObserver | null = null
 let currentAnimationPromises: Promise<void>[] = []
 let lastObservedParentWidth: number = 0
+let animationActiveCount = 0
 
 const generatedId = () => Math.random().toString(36).substring(2, 9)
 
 const calculatePositions = async () => {
-    console.log("start calc position")
     if (!hiddenContainerRef.value || !visibleContainerRef.value || props.text.length === 0) {
         return
     }
@@ -107,8 +107,24 @@ const calculatePositions = async () => {
     })
 
     hiddenChars.value = newHiddenChars
-    console.log("end calc position")
 }
+
+const animationCleanup = () => {
+    animationActiveCount--
+    if (animationActiveCount == 0) {
+        visibleChars.value.forEach((char) => {
+            if (char.ref) {
+                char.origin = char.destination
+            }
+        })
+
+        visibleChars.value = hiddenChars.value.map(c => ({
+            ...c,
+            origin: c.destination,
+        }))
+    }
+}
+
 
 const calculateMotionPath = (
     x1: number, y1: number,
@@ -178,44 +194,29 @@ function findLastNbspIndex(spans: Element[]) {
 }
 
 const applyPositions = async () => {
-    console.log("start apply position")
     if (!visibleContainerRef.value) return
-
-    visibleChars.value = hiddenChars.value.map(c => ({
-        ...c,
-        ref: null,
-        origin: c.origin ? { ...c.origin } : undefined,
-        destination: c.destination ? { ...c.destination } : undefined,
-    }))
 
     await nextTick()
 
     const visibleSpans = Array.from(visibleContainerRef.value.children) as HTMLElement[]
-
     visibleChars.value.forEach((char, index) => {
         const span = visibleSpans[index]
         if (span && char.destination) {
-            gsap.set(span, {
-                x: char.destination.x,
-                y: char.destination.y,
-                opacity: (char.task === 'fadeIn' || char.task === 'fadeOut') ? 0 : 1
-            })
-
             char.ref = span
         }
     })
-    console.log("end apply position")
 }
 
-const calculateAndApplyPositions = async () => {
-    console.log("calc and apply")
+const setToPosition = async () => {
     await calculatePositions()
     await nextTick()
+    assignTasks(true)
     await applyPositions()
+    animateChars()
 }
 
 
-const debouncedRecalculate = debounce(calculateAndApplyPositions, 100)
+const debouncedRecalculate = debounce(setToPosition, 100)
 
 onMounted(async () => {
     if (props.text.length > 0) {
@@ -253,8 +254,7 @@ onMounted(async () => {
         console.warn("hiddenContainerRef not found on mount. Cannot set up ResizeObserver.")
     }
 
-    console.log("mounted: start calc and apply")
-    await calculateAndApplyPositions()
+    setToPosition()
 })
 
 onUnmounted(() => {
@@ -267,43 +267,59 @@ const animateChars = () => {
     if (!visibleContainerRef.value) return
 
     const animations: Promise<void>[] = []
-
     visibleChars.value.forEach((char) => {
         if (char.ref) {
+            const { x: x1, y: y1 } = char.origin!
+            const { x: x2, y: y2 } = char.destination!
+
             if (char.task === 'fadeOut') {
+                animationActiveCount++
                 animations.push(new Promise(resolve => {
+                    gsap.set(char.ref!, {
+                        x: x2,
+                        y: y2,
+                        opacity: 1
+                    })
                     gsap.to(char.ref!, {
                         duration: ANIMATION_DURATION,
                         opacity: 0,
+                        y: y2 + 20,
                         ease: "power2.inOut",
                         onComplete: () => {
+                            animationCleanup()
                             resolve()
                         }
                     })
                 }))
             }
             else if (char.task === 'fadeIn') {
+                animationActiveCount++
                 animations.push(new Promise(resolve => {
                     gsap.set(char.ref!, {
+                        x: x2,
+                        y: y2 - 20,
                         opacity: 0
                     })
                     gsap.to(char.ref!, {
                         duration: ANIMATION_DURATION,
                         opacity: 1,
+                        y: y2,
                         ease: "power2.inOut",
                         onComplete: () => {
-                            char.task = 'show'
+                            animationCleanup()
                             resolve()
                         }
                     })
                 }))
             }
             else if (char.task === 'move') {
+                animationActiveCount++
                 animations.push(new Promise(resolve => {
-                    const { x: x1, y: y1 } = char.origin!
-                    const { x: x2, y: y2 } = char.destination!
-
                     const { path, curviness } = calculateMotionPath(x1, y1, x2, y2)
+                    gsap.set(char.ref!, {
+                        x: x1,
+                        y: y1,
+                    })
 
                     gsap.to(char.ref!, {
                         duration: ANIMATION_DURATION,
@@ -314,13 +330,19 @@ const animateChars = () => {
                             autoRotate: false
                         },
                         onComplete: () => {
-                            char.task = 'show'
+                            animationCleanup()
                             resolve()
                         }
                     })
                 }))
             }
-
+            else if (char.task === 'appear') {
+                gsap.set(char.ref!, {
+                    x: char.destination ? char.destination.x : 0,
+                    y: char.destination ? char.destination.y : 0,
+                    opacity: 1
+                })
+            }
         }
     })
 
@@ -329,7 +351,17 @@ const animateChars = () => {
     })
 }
 
-const assignTasks = () => {
+const assignTasks = (firstRender = false) => {
+    if (firstRender) {
+        visibleChars.value = hiddenChars.value.map(c => ({
+            ...c,
+            origin: c.destination,
+        }))
+
+        visibleChars.value.forEach(char => { char.assigned = true; char.task = 'appear' })
+        hiddenChars.value.forEach(char => { char.assigned = true; char.task = 'appear' })
+        return
+    }
     visibleChars.value.forEach(char => { char.assigned = false })
     hiddenChars.value.forEach(char => { char.assigned = false })
 
@@ -410,8 +442,9 @@ watch(() => props.text, async (newText, oldText) => {
         }))
         await nextTick()
 
-        console.log("watcher: start calc and apply")
-        await calculateAndApplyPositions()
+        await calculatePositions()
+        await nextTick()
+        await applyPositions()
         animateChars()
     }
     else if (newText.length > 0 && oldText.length > 0) {
