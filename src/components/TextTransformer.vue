@@ -1,7 +1,10 @@
 <template>
     <div class="relative w-full h-full">
+
+        <!-- hidden container acts as a template -->
         <div ref="hiddenContainerRef" class="w-fit whitespace-nowrap invisible"></div>
 
+        <!-- visible container takes coordinates -->
         <div ref="visibleContainerRef" class="absolute inset-0 flex">
             <span v-for="char in visibleChars" :key="char.id" class="inline-block absolute">
                 {{ char.content }}
@@ -16,6 +19,7 @@ import { ref, onMounted, nextTick, onUnmounted, watch } from 'vue'
 import gsap from 'gsap'
 import { debounce } from '../utils/debounce'
 import { MotionPathPlugin } from 'gsap/MotionPathPlugin'
+
 gsap.registerPlugin(MotionPathPlugin)
 
 const props = withDefaults(defineProps<{

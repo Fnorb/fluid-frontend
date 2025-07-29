@@ -4,7 +4,7 @@ report({
     {
       "pair": {
         "reference": "..\\bitmaps_reference\\web-pres-lieb_Landing_Page_0_document_0_desktop.png",
-        "test": "..\\bitmaps_test\\20250718-141657\\web-pres-lieb_Landing_Page_0_document_0_desktop.png",
+        "test": "..\\bitmaps_test\\20250729-132539\\web-pres-lieb_Landing_Page_0_document_0_desktop.png",
         "selector": "document",
         "fileName": "web-pres-lieb_Landing_Page_0_document_0_desktop.png",
         "label": "Landing Page",
@@ -19,18 +19,18 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 6.075390625000001,
-          "misMatchPercentage": "6.08",
-          "analysisTime": 39
+          "rawMisMatchPercentage": 9.2935546875,
+          "misMatchPercentage": "9.29",
+          "analysisTime": 46
         },
-        "diffImage": "..\\bitmaps_test\\20250718-141657\\failed_diff_web-pres-lieb_Landing_Page_0_document_0_desktop.png"
+        "diffImage": "..\\bitmaps_test\\20250729-132539\\failed_diff_web-pres-lieb_Landing_Page_0_document_0_desktop.png"
       },
       "status": "fail"
     },
     {
       "pair": {
         "reference": "..\\bitmaps_reference\\web-pres-lieb_Landing_Page_0_document_1_mobile.png",
-        "test": "..\\bitmaps_test\\20250718-141657\\web-pres-lieb_Landing_Page_0_document_1_mobile.png",
+        "test": "..\\bitmaps_test\\20250729-132539\\web-pres-lieb_Landing_Page_0_document_1_mobile.png",
         "selector": "document",
         "fileName": "web-pres-lieb_Landing_Page_0_document_1_mobile.png",
         "label": "Landing Page",
@@ -45,18 +45,18 @@ report({
             "width": 0,
             "height": 0
           },
-          "rawMisMatchPercentage": 9.761477572559366,
-          "misMatchPercentage": "9.76",
-          "analysisTime": 26
+          "rawMisMatchPercentage": 32.41859070464768,
+          "misMatchPercentage": "32.42",
+          "analysisTime": 23
         },
-        "diffImage": "..\\bitmaps_test\\20250718-141657\\failed_diff_web-pres-lieb_Landing_Page_0_document_1_mobile.png"
+        "diffImage": "..\\bitmaps_test\\20250729-132539\\failed_diff_web-pres-lieb_Landing_Page_0_document_1_mobile.png"
       },
       "status": "fail"
     },
     {
       "pair": {
         "reference": "..\\bitmaps_reference\\web-pres-lieb_Header_only_0_header_0_desktop.png",
-        "test": "..\\bitmaps_test\\20250718-141657\\web-pres-lieb_Header_only_0_header_0_desktop.png",
+        "test": "..\\bitmaps_test\\20250729-132539\\web-pres-lieb_Header_only_0_header_0_desktop.png",
         "selector": "header",
         "fileName": "web-pres-lieb_Header_only_0_header_0_desktop.png",
         "label": "Header only",
@@ -79,7 +79,7 @@ report({
     {
       "pair": {
         "reference": "..\\bitmaps_reference\\web-pres-lieb_Header_only_0_header_1_mobile.png",
-        "test": "..\\bitmaps_test\\20250718-141657\\web-pres-lieb_Header_only_0_header_1_mobile.png",
+        "test": "..\\bitmaps_test\\20250729-132539\\web-pres-lieb_Header_only_0_header_1_mobile.png",
         "selector": "header",
         "fileName": "web-pres-lieb_Header_only_0_header_1_mobile.png",
         "label": "Header only",

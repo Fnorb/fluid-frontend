@@ -31,7 +31,7 @@ import TechButton from './TechButton.vue';
 
 const techs = [
   { name: 'Vue 3 + TS', description: 'Built with Vue 3 and TypeScript using the Composition API for clean, modular code.', },
-  { name: 'GSAP', description: 'Performance-friendly animations for gooey shapes and character motion using GSAP.', },
+  { name: 'GSAP', description: 'Performance-friendly animations for gooey shapes and character motion using GSA.', },
   { name: 'Tailwind', description: 'Utility-first styling with Tailwind makes layout fast, consistent, and responsive.', },
   { name: 'Houdini', description: 'A custom CSS Houdini paint worklet draws dynamic squirclets in the background.', },
   { name: 'Deploy', description: 'A Node script pushes the built app to a Git worktree for GitHub Pages hosting.', },
