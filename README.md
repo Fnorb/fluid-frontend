@@ -6,6 +6,12 @@
 
 This repository contains a responsive onepager, that features an animated gooey-background as well as a text-transformation component (which briefly explains the appllied technologies). In addition there are unit tests, visual regression tests, and there is a deployment script.
 
+## 📸 Screenshots
+
+Here's a quick look at the application in action:
+
+![Application Main Screen](screenshots/screenshot.png)
+
 ## 🚀 Getting Started
 
 Clone the repository and NPM install. Node v22 or higher is recommended.
