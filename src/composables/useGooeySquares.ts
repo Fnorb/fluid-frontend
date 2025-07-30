@@ -1,6 +1,7 @@
 import { ref, onMounted, onBeforeUnmount } from "vue";
 import { gsap } from "gsap";
 
+// define the structure of objects containing the data for the animated squares
 interface Square {
   x: number;
   y: number;
@@ -8,10 +9,12 @@ interface Square {
   depthFactor: number;
 }
 
+// set button size, vertical and rotation speeds
 const MAX_ROTATION_SPEED = 30;
 const BASE_SPEED = 120;
 const SQUARE_HEIGHT = 40;
 
+// generate squares and attempt to distribute them evenly in the defined area
 function generateSquares(
   count: number,
   areaWidth: number,
@@ -24,6 +27,7 @@ function generateSquares(
   for (let i = 0; i < count; i++) {
     let bestLocation: { x: number; y: number; dist: number } | null = null;
 
+    // try up to maxAttempts often to place the button
     for (let attempt = 0; attempt < maxAttempts; attempt++) {
       const candidateX = Math.random() * areaWidth;
       const candidateY = Math.random() * areaHeight;
@@ -34,11 +38,13 @@ function generateSquares(
         if (dist < minDist) minDist = dist;
       }
 
+      // remember the so far best location
       if (!bestLocation || minDist > bestLocation.dist) {
         bestLocation = { x: candidateX, y: candidateY, dist: minDist };
       }
     }
 
+    // if a best location has been found and the distance to other squares exceeds the set minimum, place the square there
     if (bestLocation && bestLocation.dist >= minDistance) {
       placed.push({
         x: bestLocation.x,
@@ -46,6 +52,7 @@ function generateSquares(
         rotation: Math.random() * 360,
         depthFactor: 0.5 + Math.random() * 0.5,
       });
+      // otherwise skip the square
     } else {
       console.warn(
         `Skipping square ${i}: no good placement found after ${maxAttempts} attempts`
@@ -55,6 +62,7 @@ function generateSquares(
   return placed;
 }
 
+// animate the squares and reset their position should they leave the viewport
 export function useGooeySquares(
   columnWidth: number,
   squareCount: number,
@@ -80,7 +88,7 @@ export function useGooeySquares(
     const startRotation = Math.random() * 360;
     const endRotation = startRotation + rotationSpeed * duration;
 
-    // RESET
+    // sets the normal and gooey square back to start
     gsap.set(elNormal, {
       x: startX,
       y: startY,
@@ -96,7 +104,7 @@ export function useGooeySquares(
       scale: 0.5 * depthFactor,
     });
 
-    // ANIMATION
+    // starts the move animation for the normal and gooey square, speed relative to scale
     const normalTween = gsap.to(elNormal, {
       y: endY,
       rotation: endRotation,
@@ -122,6 +130,7 @@ export function useGooeySquares(
     animations.push(normalTween, gooeyTween);
   };
 
+  // init squares on mount
   onMounted(() => {
     squares.value = generateSquares(
       squareCount,
@@ -131,6 +140,7 @@ export function useGooeySquares(
     );
   });
 
+  // stop animations on unmount
   onBeforeUnmount(() => {
     animations.forEach((tween) => tween.kill());
   });

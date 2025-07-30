@@ -15,6 +15,7 @@ import Content from './components/Content.vue'
 </script>
 
 <style>
+/* reposition the gooey animation depending on the available space */
 @media only screen and (min-width: 1100px) {
   .gooey-container {
     left: calc((100vw - 1000px) / 2 - 150px);

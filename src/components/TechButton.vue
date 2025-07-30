@@ -1,4 +1,5 @@
 <template>
+    <!-- a glassy squircle button with Firefox fallback to rounded corners -->
     <button class="buttons button-fallback relative px-6 py-3 text-teal-200 font-semibold
          bg-[rgba(255,255,255,0.03)]
          backdrop-blur-md border border-none
@@ -13,9 +14,12 @@
             'brightness-150': isActive,
             'bg-black/30': !isActive
         }" @click="$emit('select')">
+
+        <!-- hover effect that works with the squircle -->
         <span
             class="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0),rgba(255,255,255,0))] opacity-0 group-hover:opacity-50 transition-opacity duration-300 ease-in-out pointer-events-none"></span>
 
+        <!-- label -->
         <span class="relative z-10">{{ techName }}</span>
     </button>
 </template>
@@ -30,6 +34,7 @@ const emits = defineEmits(['select']);
 </script>
 
 <style scoped>
+/* Firefox fallback */
 @supports not (mask-image: paint(squircle)) {
     .button-fallback {
         border-radius: 16px;
