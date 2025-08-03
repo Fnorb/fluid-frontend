@@ -40,7 +40,7 @@ const techs = [
   { name: 'Deploy', description: 'A Node script pushes the built app to a Git worktree for GitHub Pages hosting.', },
 ];
 
-const currentText = ref(techs[0].description)
+const currentText = ref(techs[0].description);
 const activeTech = ref<string | null>(techs[0].name);
 
 const selectTech = (tech: { name: string; description: string }) => {

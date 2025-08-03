@@ -25,12 +25,12 @@
 </template>
 
 <script setup lang="ts">
-const props = defineProps<{
+defineProps<{
     techName: string;
     isActive: boolean;
 }>();
 
-const emits = defineEmits(['select']);
+defineEmits(['select']);
 </script>
 
 <style scoped>

@@ -3,15 +3,15 @@
     <div class="gooey-container fixed top-0">
       <GooeySquares />
     </div>
-    <Content />
-    <Header />
+    <AppContent />
+    <AppHeader />
   </div>
 </template>
 
 <script setup lang="ts">
-import Header from './components/Header.vue'
+import AppHeader from './components/AppHeader.vue';
 import GooeySquares from './components/GooeySquares.vue';
-import Content from './components/Content.vue'
+import AppContent from './components/AppContent.vue';
 </script>
 
 <style>
