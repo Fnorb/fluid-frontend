@@ -1,5 +1,5 @@
 {
-  "name": "web-pres-lieb",
+  "name": "fluid-frontend",
   "version": "1.0.0",
   "type": "module",
   "description": "",
@@ -13,14 +13,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Fnorb/web-pres-lieb.git"
+    "url": "git+https://github.com/Fnorb/fluid-frontend.git"
   },
   "author": "Arkadij Liebau",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Fnorb/web-pres-lieb/issues"
+    "url": "https://github.com/Fnorb/fluid-frontend/issues"
   },
-  "homepage": "https://github.com/Fnorb/web-pres-lieb#readme",
+  "homepage": "https://github.com/Fnorb/fluid-frontend#readme",
   "dependencies": {
     "@tailwindcss/postcss": "^4.1.11",
     "gsap": "^3.13.0",
