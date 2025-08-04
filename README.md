@@ -33,8 +33,8 @@ Clone the repository and NPM install. Node v22 or higher is recommended.
 
 ### Important URLs
 
-- Repository: https://github.com/Fnorb/web-pres-lieb/
-- GitHub Pages: https://fnorb.github.io/web-pres-lieb/
+- Repository: https://github.com/Fnorb/fluid-frontend/
+- GitHub Pages: https://fnorb.github.io/fluid-frontend/
 
 ## 🛠️ Technologies & Libraries Used
 
