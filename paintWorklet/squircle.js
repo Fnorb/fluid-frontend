@@ -8,7 +8,6 @@ registerPaint(
     }
 
     paint(ctx, geom, props) {
-      console.log("PAINTING");
       const width = geom.width;
       const height = geom.height;
 
