@@ -1,13 +1,13 @@
 <template>
   <div class="w-[180px]" style="filter: drop-shadow(0px 0px 12px #19e7c1ff)">
 
-    <div ref="normalLayer">
+    <div ref="normalLayer" class="normal-layer">
       <div v-for="(square, index) in squares" :key="'normal-' + index" :data-square-id="index"
         class="square normal absolute w-20 h-20 bg-teal-300"
         :style="{ transform: `translate(${square.x}px, ${square.y}px) rotate(${square.rotation}deg)` }" />
     </div>
 
-    <div ref="gooeyLayer" style="filter: url(#gooey);">
+    <div ref="gooeyLayer" class="gooey-layer" style="filter: url(#gooey);">
       <div class="absolute top-0 left-0 w-[180px] h-16 bg-teal-300"></div>
       <div v-for="(square, index) in squares" :key="'gooey-' + index" :data-square-id="index"
         class="square gooey absolute w-20 h-20 bg-teal-300"
@@ -29,7 +29,7 @@
 
 <script setup lang="ts">
 import { onMounted, nextTick } from 'vue';
-import { useGooeySquares } from '../composables/useGooeySquares'; // Adjust path as needed
+import { useGooeySquares } from '../composables/useGooeySquares';
 
 // Define constants for configuration
 const COLUMN_WIDTH = 120;

@@ -1,19 +1,18 @@
-import { describe, it, expect, vi } from "vitest";
 import { mount } from "@vue/test-utils";
 import GooeySquares from "../components/GooeySquares.vue";
+import { describe, it, expect } from "vitest";
+import { nextTick } from "vue";
 
-vi.mock("gsap", () => ({
-  gsap: {
-    to: vi.fn(),
-    set: vi.fn(),
-  },
-}));
-
-describe("Gooey Squares", () => {
-  it("renders multiple squares", async () => {
+describe("GooeySquares.vue", () => {
+  it("renders 20 normal and 20 gooey squares", async () => {
     const wrapper = mount(GooeySquares);
-    await wrapper.vm.$nextTick();
-    const squares = wrapper.findAll(".square");
-    expect(squares.length).toBeGreaterThanOrEqual(1);
+
+    await nextTick();
+
+    const normalSquares = wrapper.findAll(".square.normal");
+    const gooeySquares = wrapper.findAll(".square.gooey");
+
+    expect(normalSquares).toHaveLength(20);
+    expect(gooeySquares).toHaveLength(20);
   });
 });

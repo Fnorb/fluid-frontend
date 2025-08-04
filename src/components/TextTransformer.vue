@@ -5,7 +5,7 @@
         <div ref="hiddenContainerRef" class="w-fit whitespace-nowrap invisible"></div>
 
         <!-- visible container takes coordinates -->
-        <div ref="visibleContainerRef" class="absolute inset-0 flex">
+        <div ref="visibleContainerRef" class="absolute inset-0 flex" data-testid="visible-container">
             <span v-for="char in visibleChars" :key="char.id" class="inline-block absolute">
                 {{ char.content }}
             </span>

@@ -2,7 +2,7 @@ import { ref, onMounted, onBeforeUnmount } from "vue";
 import { gsap } from "gsap";
 
 // define the structure of objects containing the data for the animated squares
-interface Square {
+export interface Square {
   x: number;
   y: number;
   rotation: number;
