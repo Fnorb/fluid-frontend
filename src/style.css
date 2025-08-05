@@ -26,9 +26,9 @@ svg {
     "Liberation Mono", "Courier New", monospace;
 
   /*color definitions */
-  --color-content-left: #090534;
-  --color-content-center: #020818;
-  --color-content-right: #02030d;
+  --color-bg-light: #090534;
+  --color-bg-medium: #020818;
+  --color-bg-dark: #02030d;
 
   /* spacing, breakpoint, text-size, font-weight definitions */
   --spacing: 0.25rem;
@@ -39,4 +39,30 @@ svg {
   --text-xl--line-height: calc(1.75 / 1.25);
   --font-weight-semibold: 600;
   --font-weight-bold: 700;
+}
+
+/* custom classes */
+.bg-fixed {
+  background-attachment: fixed;
+}
+
+@layer utilities {
+  .bg-complex-gradient {
+    background-attachment: fixed, scroll;
+
+    background-image: linear-gradient(
+        to bottom right,
+        var(--color-bg-light) 0%,
+        var(--color-bg-medium) 23%,
+        var(--color-bg-dark) 100%
+      ),
+      linear-gradient(
+        to right,
+        rgba(0, 255, 255, 0) 0%,
+        rgba(0, 255, 255, 0.5) 20%,
+        rgba(0, 255, 255, 1) 50%,
+        rgba(0, 255, 255, 0.5) 80%,
+        rgba(0, 255, 255, 0) 100%
+      );
+  }
 }

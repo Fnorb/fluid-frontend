@@ -1,6 +1,6 @@
 <template>
   <div class="min-h-screen">
-    <div class="gooey-container fixed top-0">
+    <div class="gooey-container fixed h-full bg-blend-hard-light bg-complex-gradient">
       <GooeySquares />
     </div>
     <AppContent />
