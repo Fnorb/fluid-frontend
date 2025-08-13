@@ -8,6 +8,38 @@
                  md:text-xl md:text-left md:w-auto">
         Fluid Frontend
       </h1>
+      <div class="flex-grow"></div>
+      <nav class="flex space-x-4">
+        <a v-for="icon in headerIcons" :key="icon.type" :href="icon.link" target="_blank" rel="noopener noreferrer">
+          <div v-html="icon.svg" class="w-6 h-6 text-white"></div>
+        </a>
+      </nav>
     </div>
   </header>
 </template>
+
+
+<script lang="ts" setup>
+import { computed, ref } from 'vue';
+
+const iconModules = import.meta.glob('../assets/icons/*.svg', { eager: true, query: '?raw', import: 'default' });
+
+const links = ref([
+  { type: 'github', file: 'github.svg', link: '' },
+  { type: 'linkedin', file: 'linkedin.svg', link: '' },
+  { type: 'mail', file: 'mail.svg', link: 'mailto:' },
+  { type: 'phone', file: 'phone.svg', link: 'tel:' },
+  { type: 'cv', file: 'cv.svg', link: '/.pdf' }
+]);
+
+const headerIcons = computed(() => {
+  return links.value.map(item => {
+    const filePath = `../assets/icons/${item.file}`;
+    const svgContent = iconModules[filePath];
+    return {
+      ...item,
+      svg: svgContent
+    };
+  });
+});
+</script>

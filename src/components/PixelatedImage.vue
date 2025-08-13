@@ -99,7 +99,6 @@ async function updateImage(pixelationOverride?: number) {
 }
 
 function startPixelationAnimation(from: number, to: number) {
-    // TODO: implement requestAnimationFrame tween over 1s
     if (canvasData.rafId) {
         cancelAnimationFrame(canvasData.rafId)
         canvasData.rafId = undefined
@@ -148,11 +147,9 @@ watch(() => props.pixelation, (newVal, oldVal) => {
 })
 
 onMounted(() => {
-    // canvasData.canvas is already set by the function ref
     if (canvasData.canvas && !canvasData.ctx) {
         canvasData.ctx = canvasData.canvas.getContext('2d')
     }
-    // kick once in case the watch ran before the ref was set
     updateImage()
 })
 </script>
