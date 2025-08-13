@@ -23,6 +23,8 @@
         <TextTransformer :text="currentText" class="[grid-area:content] text-white" />
       </div>
     </div>
+
+    <PixelatedAnimator class="mt-8" />
   </div>
 </template>
 
@@ -30,6 +32,7 @@
 import { ref } from 'vue';
 import TextTransformer from './TextTransformer.vue';
 import TechButton from './TechButton.vue';
+import PixelatedAnimator from './PixelatedAnimator.vue';
 
 // button labels and the content that is displayed when the matching button is pressed
 const techs = [
