@@ -1,5 +1,9 @@
 <template>
   <div class="max-w-[1000px] w-full mx-auto pt-32 px-4">
+    <h2 class="text-3xl font-bold text-white mb-4 relative">Title 1</h2>
+
+    <!-- wrapper for the pixelator component tying it to the y-position -->
+    <PixelateOnScroll :yTop="0.3" :yBottom="0.35" :yDist="0.4" :minPixel="0" :maxPixel="0.7" class="mt-10 mb-40" />
 
     <!-- container for the buttons and text content -->
     <div class="grid-container grid grid-rows-auto gap-[13px]">
@@ -23,8 +27,6 @@
         <TextTransformer :text="currentText" class="[grid-area:content] text-white" />
       </div>
     </div>
-
-    <PixelatedAnimator class="mt-8" />
   </div>
 </template>
 
@@ -32,7 +34,7 @@
 import { ref } from 'vue';
 import TextTransformer from './TextTransformer.vue';
 import TechButton from './TechButton.vue';
-import PixelatedAnimator from './PixelatedAnimator.vue';
+import PixelateOnScroll from './PixelatedAnimator.vue';
 
 // button labels and the content that is displayed when the matching button is pressed
 const techs = [
