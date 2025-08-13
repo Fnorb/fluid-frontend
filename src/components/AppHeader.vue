@@ -1,45 +1,124 @@
 <template>
-  <header
-    class="fixed top-0 left-0 w-full bg-[linear-gradient(3deg,_var(--color-teal-300)_40%,_#ccfbf1)] h-fit min-h-16 z-30">
-    <div class="max-w-screen-lg mx-auto flex items-center px-4 min-h-16">
+  <header class="fixed inset-x-0 top-0 bg-[linear-gradient(3deg,_var(--color-teal-300)_40%,_#ccfbf1)] z-30 min-h-16">
+    <div class="relative max-w-screen-lg mx-auto min-h-16 px-4
+             grid grid-cols-[1fr_auto_1fr] items-center
+             md:grid-cols-[auto_1fr_auto]">
+
       <h1 class="font-semibold text-white drop-shadow-[0_0_5px_rgba(200,255,255,0.3)] mix-blend-plus-lighter opacity-100
-                 text-base text-center w-full 
-                 sm:text-lg 
-                 md:text-xl md:text-left md:w-auto">
+               text-base text-center col-start-2 justify-self-center
+               sm:text-lg
+               md:text-xl md:col-start-1 md:col-end-2 md:text-left md:justify-self-start">
         Fluid Frontend
       </h1>
-      <div class="flex-grow"></div>
-      <nav class="flex space-x-4">
-        <a v-for="icon in headerIcons" :key="icon.type" :href="icon.link" target="_blank" rel="noopener noreferrer">
+
+      <nav class="hidden sm:flex col-start-3 justify-self-end items-center gap-4">
+        <a v-for="icon in headerIcons" :key="icon.type" :href="icon.link" target="_blank" rel="noopener noreferrer"
+          class="grid place-items-center w-9 h-9 rounded-md hover:bg-white/10 active:scale-95 transition">
           <div v-html="icon.svg" class="w-6 h-6 text-white"></div>
         </a>
       </nav>
+
+      <div class="sm:hidden col-start-3 justify-self-end relative">
+        <button class="grid place-items-center w-11 h-11" :aria-expanded="isMenuOpen ? 'true' : 'false'"
+          aria-controls="header-flyout" aria-label="Toggle menu" type="button" @click="isMenuOpen = !isMenuOpen">
+
+          <span v-html="burgerSvg" :class="[
+            'w-6 h-6 text-white transition-transform duration-200 ease-in-out origin-center transform-gpu will-change-transform',
+            isMenuOpen ? 'rotate-90' : 'rotate-0',
+            'motion-reduce:transform-none motion-reduce:transition-none'
+          ]" />
+        </button>
+
+        <transition enter-active-class="animate-flyout-drop" leave-active-class="animate-flyout-reverse">
+          <div v-if="isMenuOpen" id="header-flyout" role="menu" aria-label="Header quick actions" class="absolute left-1/2 -translate-x-1/2 top-full mt-1
+                    rounded-b-xl shadow-lg p-3 bg-teal-300 origin-top">
+            <div class="flex flex-col gap-2">
+              <a v-for="icon in headerIcons" :key="`flyout-${icon.type}`" :href="icon.link" target="_blank"
+                rel="noopener noreferrer"
+                class="flex items-center justify-center w-full h-12 rounded-lg hover:bg-white/10 active:scale-95 transition"
+                role="menuitem">
+                <div v-html="icon.svg" class="w-7 h-7 text-white"></div>
+              </a>
+            </div>
+          </div>
+        </transition>
+      </div>
     </div>
   </header>
 </template>
 
-
 <script lang="ts" setup>
-import { computed, ref } from 'vue';
+import { computed, ref, onMounted, onBeforeUnmount } from 'vue';
+const isMenuOpen = ref(false);
+
+const onEsc = (e: KeyboardEvent) => { if (e.key === 'Escape') isMenuOpen.value = false; };
+onMounted(() => document.addEventListener('keydown', onEsc));
+onBeforeUnmount(() => document.removeEventListener('keydown', onEsc));
 
 const iconModules = import.meta.glob('../assets/icons/*.svg', { eager: true, query: '?raw', import: 'default' });
+const burgerSvg = iconModules['../assets/icons/burger.svg'] as string;
 
 const links = ref([
   { type: 'github', file: 'github.svg', link: '' },
   { type: 'linkedin', file: 'linkedin.svg', link: '' },
   { type: 'mail', file: 'mail.svg', link: 'mailto:' },
   { type: 'phone', file: 'phone.svg', link: 'tel:' },
-  { type: 'cv', file: 'cv.svg', link: '/.pdf' }
+  { type: 'cv', file: 'cv.svg', link: '/.pdf' },
 ]);
 
-const headerIcons = computed(() => {
-  return links.value.map(item => {
-    const filePath = `../assets/icons/${item.file}`;
-    const svgContent = iconModules[filePath];
-    return {
-      ...item,
-      svg: svgContent
-    };
-  });
-});
+const headerIcons = computed(() =>
+  links.value.map(item => ({
+    ...item,
+    svg: iconModules[`../assets/icons/${item.file}`] as string,
+  }))
+);
 </script>
+
+<style scoped>
+@keyframes flyout-drop {
+  0% {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.98);
+  }
+
+  70% {
+    opacity: 1;
+    transform: translateY(4px) scale(1.0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1.0);
+  }
+}
+
+@keyframes flyout-reverse {
+  0% {
+    opacity: 1;
+    transform: translateY(0) scale(1.0);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.98);
+  }
+}
+
+.animate-flyout-drop {
+  animation: flyout-drop 240ms cubic-bezier(.2, .8, .2, 1);
+  transform-origin: top;
+}
+
+.animate-flyout-reverse {
+  animation: flyout-reverse 160ms cubic-bezier(.2, .8, .2, 1);
+  transform-origin: top;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .animate-flyout-drop,
+  .animate-flyout-reverse {
+    animation: none !important;
+  }
+}
+</style>
