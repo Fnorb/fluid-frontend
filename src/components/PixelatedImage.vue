@@ -64,6 +64,7 @@ function calculateCanvasSize(
     if (height) return { width: Math.round(height * r), height }
     return { width: img.naturalWidth, height: img.naturalHeight }
 }
+
 async function updateImage(pixelationOverride?: number) {
     if (!props.image || !canvasData.canvas) return
     const px = pixelationOverride ?? props.pixelation
@@ -77,7 +78,6 @@ async function updateImage(pixelationOverride?: number) {
     c.height = height
     canvasData.width = width
     canvasData.height = height
-
 
     const ctx = (canvasData.ctx ||= c.getContext('2d'))
     if (!ctx) return
@@ -139,6 +139,10 @@ function startPixelationAnimation(from: number, to: number) {
 // watch(() => props.image, updateImage, { immediate: true })
 
 watch(() => props.pixelation, (newVal, oldVal) => {
+    if (canvasData.canvas && !canvasData.ctx) {
+        canvasData.ctx = canvasData.canvas.getContext('2d');
+    }
+
     if (!props.animated) {
         updateImage()
     } else {
@@ -146,10 +150,4 @@ watch(() => props.pixelation, (newVal, oldVal) => {
     }
 })
 
-onMounted(() => {
-    if (canvasData.canvas && !canvasData.ctx) {
-        canvasData.ctx = canvasData.canvas.getContext('2d')
-    }
-    updateImage()
-})
 </script>
