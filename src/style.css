@@ -39,6 +39,8 @@ svg {
   --text-xl--line-height: calc(1.75 / 1.25);
   --font-weight-semibold: 600;
   --font-weight-bold: 700;
+
+  --drop-shadow-3xl: 0 0 15px rgba(0, 150, 255, 0.2);
 }
 
 /* custom classes */

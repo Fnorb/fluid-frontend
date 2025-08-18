@@ -1,5 +1,6 @@
 <template>
-  <header class="fixed inset-x-0 top-0 bg-[linear-gradient(3deg,_var(--color-teal-300)_40%,_#ccfbf1)] z-30 min-h-16">
+  <header
+    class="fixed inset-x-0 top-0 bg-[linear-gradient(3deg,_var(--color-teal-300)_40%,_#ccfbf1)] z-30 min-h-16 bg-indigo-500">
     <div class="relative max-w-screen-lg mx-auto min-h-16 px-4
              grid grid-cols-[1fr_auto_1fr] items-center
              md:grid-cols-[auto_1fr_auto]">
@@ -11,32 +12,42 @@
         Fluid Frontend
       </h1>
 
-      <nav class="hidden sm:flex col-start-3 justify-self-end items-center gap-4">
+      <nav class="hidden sm:flex col-start-3 justify-self-end items-center gap-3">
         <a v-for="icon in headerIcons" :key="icon.type" :href="icon.link" target="_blank" rel="noopener noreferrer"
-          class="grid place-items-center w-9 h-9 rounded-md hover:bg-white/10 active:scale-95 transition">
-          <div v-html="icon.svg" class="w-6 h-6 text-white"></div>
+          class="grid place-items-center w-11 h-11 rounded-full
+           transition
+           hover:bg-[rgba(13,148,136,0.2)]  /* ~teal-600 @ 12% */
+           active:scale-95
+           focus-visible:outline-none
+           focus-visible:ring-2 focus-visible:ring-teal-600/40" :aria-label="icon.type">
+          <div v-html="icon.svg" class="w-7 h-7 text-black transition-colors duration-200
+             hover:text-teal-800" />
         </a>
       </nav>
 
       <div class="sm:hidden col-start-3 justify-self-end relative">
-        <button class="grid place-items-center w-11 h-11" :aria-expanded="isMenuOpen ? 'true' : 'false'"
+        <button class="grid place-items-center w-11 h-11 rounded-full
+         transition
+         hover:bg-[rgba(13,148,136,0.2)]
+         active:scale-95
+         cursor-pointer
+         focus-visible:outline-none
+         focus-visible:ring-2 focus-visible:ring-teal-600/40" :aria-expanded="isMenuOpen ? 'true' : 'false'"
           aria-controls="header-flyout" aria-label="Toggle menu" type="button" @click="isMenuOpen = !isMenuOpen">
-
           <span v-html="burgerSvg" :class="[
-            'w-6 h-6 text-white transition-transform duration-200 ease-in-out origin-center transform-gpu will-change-transform',
+            'w-6 h-6 text-black transition-transform duration-200 ease-in-out origin-center transform-gpu will-change-transform',
             isMenuOpen ? 'rotate-90' : 'rotate-0',
             'motion-reduce:transform-none motion-reduce:transition-none'
           ]" />
         </button>
-
         <transition enter-active-class="animate-flyout-drop" leave-active-class="animate-flyout-reverse">
           <div v-if="isMenuOpen" id="header-flyout" role="menu" aria-label="Header quick actions" class="absolute left-1/2 -translate-x-1/2 top-full mt-1
-                    rounded-b-xl shadow-lg p-3 bg-teal-300 origin-top">
+                    rounded-b-xl shadow-lg p-3 bg-teal-300 w-18 origin-top">
             <div class="flex flex-col gap-2">
               <a v-for="icon in headerIcons" :key="`flyout-${icon.type}`" :href="icon.link" target="_blank"
-                rel="noopener noreferrer"
-                class="flex items-center justify-center w-full h-12 rounded-lg hover:bg-white/10 active:scale-95 transition"
-                role="menuitem">
+                rel="noopener noreferrer" class="flex items-center justify-center w-full h-12 rounded-full
+       hover:bg-[rgba(13,148,136,0.2)] active:scale-95 transition
+       focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-600/40" role="menuitem">
                 <div v-html="icon.svg" class="w-7 h-7 text-white"></div>
               </a>
             </div>

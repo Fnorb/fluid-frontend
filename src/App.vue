@@ -1,6 +1,10 @@
 <template>
   <div class="min-h-screen">
-    <div class="gooey-container fixed h-full bg-blend-hard-light bg-complex-gradient">
+    <ParallaxBackdrop srcTall="src/assets/techstack-bg2.webp" srcStandard="src/assets/techstack-bg2.webp"
+      srcWide="src/assets/techstack-bg2.webp" srcTall2x="src/assets/techstack-bg2.webp"
+      srcStandard2x="src/assets/techstack-bg2.webp" srcWide2x="src/assets/techstack-bg2.webp" :strength="80"
+      :invert="true" :opacity="1" tint="rgba(9,70,100,0.2)" :edgeFade="true" />
+    <div class="gooey-container fixed h-full">
       <GooeySquares />
     </div>
     <AppContent />
@@ -12,6 +16,7 @@
 import AppHeader from './components/AppHeader.vue';
 import GooeySquares from './components/GooeySquares.vue';
 import AppContent from './components/AppContent.vue';
+import ParallaxBackdrop from './components/ParallaxBackdrop.vue';
 </script>
 
 <style>

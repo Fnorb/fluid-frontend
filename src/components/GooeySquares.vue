@@ -1,7 +1,7 @@
 <template>
   <div class="w-[180px]">
-    <div class="bg-gradient-to-br from-bg-light from-0% via-bg-medium via-23% to-bg-dark to-100% bg-fixed bg-cover">
-    </div>
+    <!--<div class="bg-gradient-to-br from-bg-light from-0% via-bg-medium via-23% to-bg-dark to-100% bg-fixed bg-cover">
+    </div>-->
     <div style="filter: drop-shadow(0px 0px 22px #19e7c1aa)">
       <div ref="normalLayer" class="normal-layer">
         <div v-for="(square, index) in squares" :key="'normal-' + index" :data-square-id="index"

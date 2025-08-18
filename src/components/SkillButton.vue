@@ -20,13 +20,13 @@
             class="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0),rgba(255,255,255,0))] opacity-0 group-hover:opacity-50 transition-opacity duration-300 ease-in-out pointer-events-none"></span>
 
         <!-- label -->
-        <span class="relative z-10">{{ techName }}</span>
+        <span class="relative z-10">{{ skillName }}</span>
     </button>
 </template>
 
 <script setup lang="ts">
 defineProps<{
-    techName: string;
+    skillName: string;
     isActive: boolean;
 }>();
 

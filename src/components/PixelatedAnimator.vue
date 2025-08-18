@@ -1,13 +1,13 @@
 <template>
     <div ref="root" :style="filterStyle">
-        <PixelatedImage class="relative" :width="375" :image="redDesert" :pixelation="pixelation" :animated="false" />
+        <PixelatedImage class="relative" :width="250" :image="profilBild" :pixelation="pixelation" :animated="false" />
     </div>
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted, onUnmounted, nextTick, withDefaults, defineProps } from 'vue'
+import { ref, computed, onMounted, onUnmounted, nextTick } from 'vue'
 import PixelatedImage from './PixelatedImage.vue'
-import redDesert from '../assets/red_desert.webp'
+import profilBild from '../assets/ProfilBild.jpg'
 
 /**
  * All parameters are 0..1 (percent of viewport height)
