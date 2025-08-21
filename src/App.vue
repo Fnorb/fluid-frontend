@@ -2,9 +2,8 @@
   <div class="min-h-screen relative">
 
     <!-- slow scrolling background -->
-    <ParallaxBackdrop srcTall="src/assets/techstack-bg2-tall.webp" srcStandard="src/assets/techstack-bg2.webp"
-      srcWide="src/assets/techstack-bg2-wide.webp" :strength="80" :invert="true" tint="rgba(9,70,100,0.2)"
-      :edgeFade="true" />
+    <ParallaxBackdrop :srcTall="parallaxBgTall" :srcStandard="parallaxBgStandard" :srcWide="parallaxBgWide"
+      :strength="80" :invert="true" tint="rgba(9,70,100,0.2)" :edgeFade="true" />
 
     <div class="gooey-container fixed h-full" v-if="!reducedMotion">
       <GooeySquares />
@@ -20,6 +19,11 @@ import AppHeader from './components/AppHeader.vue';
 import GooeySquares from './components/GooeySquares.vue';
 import AppContent from './components/AppContent.vue';
 import ParallaxBackdrop from './components/ParallaxBackdrop.vue';
+
+// parallax backdrop image imports
+import parallaxBgStandard from './assets/parallax-bg-standard.webp'
+import parallaxBgTall from './assets/parallax-bg-tall.webp'
+import parallaxBgWide from './assets/parallax-bg-wide.webp'
 
 const reducedMotion = ref(false);
 
