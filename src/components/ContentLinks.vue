@@ -11,9 +11,9 @@
                 <dt class="font-medium text-left">
                     {{ element.label }}
                 </dt>
-                <dd class="text-gray-300">
-                    <a :href="element.value" target="_blank" rel="noopener noreferrer break-all"
-                        class="underline underline-offset-2 decoration-dotted hover:decoration-solid break-words">
+                <dd class="text-gray-300 min-w-0">
+                    <a :href="element.value" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 decoration-dotted hover:decoration-solid
+           whitespace-normal break-words [overflow-wrap:anywhere]">
                         {{ element.value }}
                     </a>
                 </dd>
