@@ -12,7 +12,7 @@
                     {{ element.label }}
                 </dt>
                 <dd class="text-gray-300">
-                    <a :href="element.value" target="_blank" rel="noopener noreferrer"
+                    <a :href="element.value" target="_blank" rel="noopener noreferrer break-all"
                         class="underline underline-offset-2 decoration-dotted hover:decoration-solid break-words">
                         {{ element.value }}
                     </a>
