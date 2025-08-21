@@ -1,12 +1,12 @@
 import { describe, it, expect } from "vitest";
 import { mount } from "@vue/test-utils";
-import TechButton from "../components//TechButton.vue";
+import SkillButton from "../components/SkillButton.vue";
 
-describe("TechButton", () => {
+describe("SkillButton", () => {
   it("renders the tech name", () => {
-    const wrapper = mount(TechButton, {
+    const wrapper = mount(SkillButton, {
       props: {
-        techName: "Vue",
+        skillName: "Vue",
         isActive: false,
       },
     });
@@ -15,9 +15,9 @@ describe("TechButton", () => {
   });
 
   it("emits click event when internal button is clicked", async () => {
-    const wrapper = mount(TechButton, {
+    const wrapper = mount(SkillButton, {
       props: {
-        techName: "Vue.js",
+        skillName: "Vue.js",
         isActive: false,
       },
     });
@@ -28,9 +28,9 @@ describe("TechButton", () => {
   });
 
   it("applies the brightness-150 class when isActive is true", () => {
-    const wrapper = mount(TechButton, {
+    const wrapper = mount(SkillButton, {
       props: {
-        techName: "Vue.js",
+        skillName: "Vue.js",
         isActive: true,
       },
     });

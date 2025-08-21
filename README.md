@@ -85,4 +85,4 @@ For a complete list of all dependencies and their exact versions, please refer t
 
 ### To Do
 
-- Ensure a smooth transition if a new prop is passed to the TextTransformer before the last animation completed
+- move content data from AppContent script to src/data files

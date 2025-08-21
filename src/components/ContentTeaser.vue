@@ -8,14 +8,18 @@
                 </ul>
             </div>
 
-            <div class="flex-grow-0 w-full lg:w-auto flex justify-center lg:justify-end drop-shadow-xl">
-                <img src="../assets/ProfilBild.jpg" class="max-w-[70%]! rounded-tr-xl rounded-br-xl">
+            <div
+                class="flex-grow-0 w-full lg:w-auto flex justify-center lg:justify-end drop-shadow-[0_0_7px_#15a8] h-75">
+                <sliced-image :src="ProfilePhoto" :slices="[3, 10, 87]" :gap="5" class="flex" />
             </div>
         </div>
     </section>
 </template>
 
 <script setup lang="ts">
+import SlicedImage from './SlicedImage.vue';
+import ProfilePhoto from '../assets/ProfilBild.jpg'
+
 const items = [
     'Frontend-Entwickler mit über 16 Jahren Erfahrung.',
     'IHK-geprüfter Ausbilder.',

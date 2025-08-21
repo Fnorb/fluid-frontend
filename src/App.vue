@@ -1,9 +1,11 @@
 <template>
-  <div class="min-h-screen">
-    <ParallaxBackdrop srcTall="src/assets/techstack-bg2.webp" srcStandard="src/assets/techstack-bg2.webp"
-      srcWide="src/assets/techstack-bg2.webp" srcTall2x="src/assets/techstack-bg2.webp"
-      srcStandard2x="src/assets/techstack-bg2.webp" srcWide2x="src/assets/techstack-bg2.webp" :strength="80"
-      :invert="true" :opacity="1" tint="rgba(9,70,100,0.2)" :edgeFade="true" />
+  <div class="min-h-screen relative">
+
+    <!-- slow scrolling background -->
+    <ParallaxBackdrop srcTall="src/assets/techstack-bg2-tall.webp" srcStandard="src/assets/techstack-bg2.webp"
+      srcWide="src/assets/techstack-bg2-wide.webp" :strength="80" :invert="true" tint="rgba(9,70,100,0.2)"
+      :edgeFade="true" />
+
     <div class="gooey-container fixed h-full">
       <GooeySquares />
     </div>
@@ -21,7 +23,7 @@ import ParallaxBackdrop from './components/ParallaxBackdrop.vue';
 
 <style>
 /* reposition the gooey animation depending on the available space */
-@media only screen and (min-width: 1100px) {
+@media (min-width: 1100px) {
   .gooey-container {
     left: calc((100vw - 1000px) / 2 - 150px);
   }
@@ -29,8 +31,7 @@ import ParallaxBackdrop from './components/ParallaxBackdrop.vue';
 
 @media (max-width: 768px) and (orientation: portrait) {
   .gooey-container {
-    left: 50%;
-    transform: translateX(-50%);
+    @apply left-1/2 -translate-x-1/2;
   }
 }
 </style>
