@@ -27,7 +27,7 @@
     <!-- tech stack description -->
     <section>
       <ContentHeadline text="Tech Stack" />
-      <ContentLinks :data="techData" class="section-bg" />
+      <ContentList :data="techData" class="section-bg" />
     </section>
 
     <!-- personal interests -->
@@ -45,7 +45,7 @@
     <!-- link list -->
     <section class="mb-50">
       <ContentHeadline text="Links" />
-      <ContentLinks :data="linkData" class="section-bg" />
+      <ContentList :data="linkData" class="section-bg" />
     </section>
 
   </div>
@@ -56,7 +56,7 @@ import { ref } from 'vue';
 import TextTransformer from './TextTransformer.vue';
 import SkillButton from './SkillButton.vue';
 import ContentTeaser from './ContentTeaser.vue';
-import ContentLinks from './ContentLinks.vue';
+import ContentList from './ContentList.vue';
 import ContentHeadline from './ContentHeadline.vue';
 
 // data for skill and project description
@@ -89,13 +89,13 @@ const techData = [
 
 // data for link list
 const linkData = [
-  { label: 'GitHub', value: 'https://github.com/Fnorb/' },
-  { label: 'LinkedIn', value: 'https://www.linkedin.com/in/arkadij-liebau/' },
-  { label: 'Mail', value: 'aliebau79@gmail.com' },
-  { label: 'Phone', value: '0151 26856489' },
-  { label: 'Vita', value: 'https://drive.google.com/file/d/1ljxl4D8jBUmde0RDGLan96If71lt8SEQ/view?usp=sharing' },
+  { label: 'GitHub', value: 'https://github.com/Fnorb/', href: 'https://github.com/Fnorb/' },
+  { label: 'This Project', value: 'https://github.com/Fnorb/fluid-frontend/', href: 'https://github.com/Fnorb/fluid-frontend/' },
+  { label: 'LinkedIn', value: 'https://www.linkedin.com/in/arkadij-liebau/', href: 'https://www.linkedin.com/in/arkadij-liebau/' },
+  { label: 'Mail', value: 'aliebau79@gmail.com', href: 'mailto:aliebau79@gmail.com' },
+  { label: 'Phone', value: '0151 26856489', href: 'tel:015126856489' },
+  { label: 'Vita', value: 'https://drive.google.com/file/d/1ljxl4D8jBUmde0RDGLan96If71lt8SEQ/view?usp=sharing', href: 'https://drive.google.com/file/d/1ljxl4D8jBUmde0RDGLan96If71lt8SEQ/view?usp=sharing' },
 ];
-
 </script>
 
 <style scoped>
