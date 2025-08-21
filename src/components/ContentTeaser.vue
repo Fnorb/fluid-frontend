@@ -2,12 +2,15 @@
 <template>
     <section>
         <div class="flex flex-wrap justify-center lg:justify-between items-start gap-10 relative text-gray-300">
+
+            <!--iterate through the item list -->
             <div class="flex-1 min-w-[20rem] text-base md:text-lg leading-relaxed">
                 <ul class="list-disc pl-5 space-y-3">
                     <li v-for="item in items" :key="item">{{ item }}</li>
                 </ul>
             </div>
 
+            <!-- sliced up photo -->
             <div
                 class="flex-grow-0 w-full lg:w-auto flex justify-center lg:justify-end drop-shadow-[0_0_7px_#15a8] h-75">
                 <sliced-image :src="ProfilePhoto" :slices="[3, 10, 87]" :gap="5" class="flex" />
@@ -20,6 +23,7 @@
 import SlicedImage from './SlicedImage.vue';
 import ProfilePhoto from '../assets/ProfilBild.jpg'
 
+// list data
 const items = [
     'Frontend-Entwickler mit über 16 Jahren Erfahrung.',
     'IHK-geprüfter Ausbilder.',
