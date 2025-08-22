@@ -61,11 +61,11 @@ import ContentHeadline from './ContentHeadline.vue';
 
 // data for skill and project description
 const skills = [
-  { name: 'Schwerpunkte', description: 'Vue.js - CSS & moderne Layout-Techniken - JavaScript (ES6+) - Canvas-Animationen - UX-nahe Frontend-Entwicklung', },
-  { name: 'Gute Kenntnisse', description: 'React - GSAP (Animationen) - Git & Code Reviews - Salesforce / Veeva Administration - E-Mail-Templates & responsives Design - Wissensvermittlung & Ausbildertätigkeit - Adobe Photoshop / Animate - Drupal / CMS-Erweiterung - Jira - Confluence', },
-  { name: 'Kürzlich erworben', description: 'React - TypeScript  - Figma - Flutter - Unity - Adobe Premiere Pro - Adobe After Effects - GraphQL- Tailwind - CSS', },
-  { name: 'Grundkenntnisse', description: 'Laravel- Typo3 - MySQL - Pattern Lab - Templating Engines (Twig, Handlebars, Mustache …) - Test-Driven Development (TDD) - Litmus (E-Mail Testing) - Bootstrap / Foundation - PHP - Babylon.js / Three.js - p5.js', },
-  { name: 'Fokus-Projekte', description: 'Präsentationen für Pharmaunternehmen mit Vue, CSS und JavaScript, oft mit Veeva- oder Salesforce-Integration; dazu einzelne Electron-Apps, PWAs und interne Tools, begleitet durch Jira, Confluence und BCS im Projektalltag.', },
+  { name: 'Schwerpunkte', description: 'Frontend-Entwicklung - Vue.js - JavaScript - Animationen (CSS) - Moderne Layouts (Grid, Flexbox, responsive)', },
+  { name: 'Gute Kenntnisse', description: 'E-Mail-Templates & responsives Design - Git & Code Reviews - GSAP - Salesforce / Veeva Administration - Wissensvermittlung & Ausbildertätigkeit - Adobe Photoshop / Animate - Drupal / CMS-Erweiterung - Jira - Confluence', },
+  { name: 'Kürzlich erworben', description: 'React - TypeScript  - Figma - Flutter - Unity - Adobe Premiere Pro - Adobe After Effects - GraphQL- Tailwind', },
+  { name: 'Grundkenntnisse', description: 'Laravel- Typo3 - MySQL - Pattern Lab - Drupal - Templating Engines - Test-Driven Development - Litmus - Bootstrap / Foundation - PHP - Babylon.js / Three.js - p5.js', },
+  { name: 'Fokus-Projekte', description: 'Interaktive Präsentationen mit Veeva-/Salesforce-Integration - Electron-Apps & PWAs - Interne Tools.', },
 ];
 
 // text transformer toggle
