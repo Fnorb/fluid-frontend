@@ -58,31 +58,41 @@ For a complete list of all dependencies and their exact versions, please refer t
 
 ### Files
 
-- Config Files: `backstop.json`, `package.json`, `postcss.config.js`, `tailwind.config.cjs`, `tsconfig.json`, `vite.config.mts`
-- Main Files: `index.html`, `src/main.ts`, `src/App.vue`
-- Styles: `src/style.css`
 - Componentes:
-  - `/src/components/Content.vue`: provides a button menu and a container for the TextTransformer
-  - `/src/components/GooeySquares.vue`: provides an animated gooey background
-  - `/src/components/Header.vue`: provides a responsive Header
-  - `/src/components/TechButton.vue`: provides a button component for the content
-  - `/src/components/TextTransformer.vue`: can be passed a string which is then transformed into other strings should a different value be passed
+  - `/src/components/AppContent.vue`: container component for the main content
+  - `/src/components/AppHeader.vue`: responsive Header as well as navigation and mobile a burger menu
+  - `/src/components/ContentHeadline.vue`: micro component taking a string and returning a glowy headline
+  - `/src/components/ContentTeaser.vue`: a two coloumn (mobile one column) component with in this case text on one side and a photo on the other
+  - `/src/components/GooeySquares.vue`: animated gooey background
+  - `/src/components/ParallaxBackdrop.vue`: animated background scrolling at a different speed than the regular content
+  - `/src/components/SkillButton.vue`: button component for the content
+  - `/src/components/SlicedImage.vue`: takes an image file, renders it on a canvas and slices it up as defined by a prop
+  - `/src/components/TextTransformer.vue`: transforms one string into another by moving the characters around
+- Config Files: `backstop.json`, `package.json`, `postcss.config.js`, `tailwind.config.cjs`, `tsconfig.json`, `vite.config.mts`
 - Composables:
   - `/src/composables/useGooeySquares.ts`: provides logic for the GooeySquare component
-- Worklets:
-  - `public/paintWorklet/squircle.min.js`: provides squirclet functionality for Chromium browsers
+- Main Files: `index.html`, `src/main.ts`, `src/App.vue`
+- Styles: `src/style.css`
 - Utils:
   - `utils/debounce.ts`: holds a debouncer that prevents the excessive repeated calling of a function
+- Worklets:
+  - `public/paintWorklet/squircle.min.js`: provides squirclet functionality for Chromium browsers
 
 ### Folders
 
-- `backstop_data`: visual regression test data
-- `dist`: output
-- `gh-pages`: worktree output to deploy to GitHub Pages
-- `public/painWorklet`: Worklet for squirclet
-- `src`: holds components and composables
-- `utils`: holds small useful general purpose functionalities
+- `/backstop_data/`: visual regression tests
+- `/dist/`: built page
+- `/gh-pages/`: worktree folder to publish on github pages
+- `/public/images/`: general image directory like for og
+- `/public/paintWorklet/`: Houdini worklet to create squircles
+- `/screenshots/`: screenshots
+- `/src/__tests__/`: test files
+- `/src/assets/`: icons, photos, backgrounds
+- `/src/components/`: Vue components
+- `/src/composables/`: Vue composables
+- `/src/utils/`: small scripts
 
 ### To Do
 
 - move content data from AppContent script to src/data files
+- add features to the ParallaxBackdrop and SlicedImage components
