@@ -3,7 +3,7 @@
 
     <!-- slow scrolling background -->
     <ParallaxBackdrop :srcTall="parallaxBgTall" :srcStandard="parallaxBgStandard" :srcWide="parallaxBgWide"
-      :strength="80" :invert="true" tint="rgba(9,70,100,0.2)" :edgeFade="true" />
+      :strength="80" :invert="true" />
 
     <div class="gooey-container fixed h-full" v-if="!reducedMotion">
       <GooeySquares />
