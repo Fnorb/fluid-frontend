@@ -62,7 +62,7 @@ import ContentHeadline from './ContentHeadline.vue';
 // data for skill and project description
 const skills = [
   { name: 'Schwerpunkte', description: 'Frontend-Entwicklung - Vue.js - JavaScript - Animationen (CSS) - Moderne Layouts (Grid, Flexbox, responsive)', },
-  { name: 'Gute Kenntnisse', description: 'E-Mail-Templates & responsives Design - Git & Code Reviews - GSAP - Salesforce / Veeva Administration - Wissensvermittlung & Ausbildertätigkeit - Adobe Photoshop / Animate - Drupal / CMS-Erweiterung - Jira - Confluence', },
+  { name: 'Gute Kenntnisse', description: 'E-Mail-Templates & responsives Design - Git & Code Reviews - GSAP - Salesforce / Veeva Administration - Wissensvermittlung & Ausbildertätigkeit - Adobe Photoshop / Animate - Jira - Confluence', },
   { name: 'Kürzlich erworben', description: 'React - TypeScript  - Figma - Flutter - Unity - Adobe Premiere Pro - Adobe After Effects - GraphQL- Tailwind', },
   { name: 'Grundkenntnisse', description: 'Laravel- Typo3 - MySQL - Pattern Lab - Drupal - Templating Engines - Test-Driven Development - Litmus - Bootstrap / Foundation - PHP - Babylon.js / Three.js - p5.js', },
   { name: 'Fokus-Projekte', description: 'Interaktive Präsentationen mit Veeva-/Salesforce-Integration - Electron-Apps & PWAs - Interne Tools.', },
