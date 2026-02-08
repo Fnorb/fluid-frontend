@@ -61,11 +61,11 @@ import ContentHeadline from './ContentHeadline.vue';
 
 // data for skill and project description
 const skills = [
-  { name: 'Schwerpunkte', description: 'Frontend-Entwicklung - Vue.js - JavaScript - Animationen (CSS) - Moderne Layouts (Grid, Flexbox, responsive)', },
-  { name: 'Gute Kenntnisse', description: 'E-Mail-Templates & responsives Design - Git & Code Reviews - GSAP - Salesforce / Veeva Administration - Wissensvermittlung & Ausbildertätigkeit - Adobe Photoshop / Animate - Jira - Confluence', },
-  { name: 'Kürzlich erworben', description: 'React - TypeScript  - Figma - Flutter - Unity - Adobe Premiere Pro - Adobe After Effects - GraphQL- Tailwind', },
-  { name: 'Grundkenntnisse', description: 'Laravel- Typo3 - MySQL - Pattern Lab - Drupal - Templating Engines - Test-Driven Development - Litmus - Bootstrap / Foundation - PHP - Babylon.js / Three.js - p5.js', },
-  { name: 'Fokus-Projekte', description: 'Interaktive Präsentationen mit Veeva-/Salesforce-Integration - Electron-Apps & PWAs - Interne Tools.', },
+  { name: 'Schwerpunkte', description: 'Vue.js · JavaScript · CSS Layout · Animation · Responsive UI' },
+  { name: 'Praxis', description: 'TypeScript · REST · Git · GSAP · Salesforce · Veeva · Adobe Animate · Photoshop · Ausbildung' },
+  { name: 'Im Aufbau', description: 'React · Figma · Flutter · GraphQL · Tailwind' },
+  { name: 'Basiswissen', description: 'Laravel · PHP · MySQL · Drupal · Three.js · TDD · After Effects · Premiere · p5.js' },
+  { name: 'Projektfokus', description: 'Interactive Apps · PWAs · Electron · Enterprise Tools' },
 ];
 
 // text transformer toggle
@@ -94,7 +94,7 @@ const linkData = [
   { label: 'LinkedIn', value: 'https://www.linkedin.com/in/arkadij-liebau/', href: 'https://www.linkedin.com/in/arkadij-liebau/' },
   { label: 'Mail', value: 'aliebau79@gmail.com', href: 'mailto:aliebau79@gmail.com' },
   { label: 'Phone', value: '(+49) 151 – 268 564 89', href: 'tel:015126856489' },
-  { label: 'Vita', value: 'https://drive.google.com/file/d/1ljxl4D8jBUmde0RDGLan96If71lt8SEQ/view?usp=sharing', href: 'https://drive.google.com/file/d/1ljxl4D8jBUmde0RDGLan96If71lt8SEQ/view?usp=sharing' },
+  { label: 'Vita', value: 'https://drive.google.com/file/d/1LgOXqqkywx8SHEhs6vOVZBKhNaTaeGaf/view?usp=sharing', href: 'https://drive.google.com/file/d/1LgOXqqkywx8SHEhs6vOVZBKhNaTaeGaf/view?usp=sharing' },
 ];
 </script>
 

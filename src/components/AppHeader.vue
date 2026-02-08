@@ -72,7 +72,7 @@ const links = ref([
   { type: 'linkedin', file: 'linkedin.svg', link: 'https://www.linkedin.com/in/arkadij-liebau/' },
   { type: 'mail', file: 'mail.svg', link: 'mailto:aliebau79@gmail.com' },
   { type: 'phone', file: 'phone.svg', link: 'tel:015126856489' },
-  { type: 'cv', file: 'cv.svg', link: 'https://drive.google.com/file/d/1ljxl4D8jBUmde0RDGLan96If71lt8SEQ/view?usp=sharing' },
+  { type: 'cv', file: 'cv.svg', link: 'https://drive.google.com/file/d/1LgOXqqkywx8SHEhs6vOVZBKhNaTaeGaf/view?usp=sharing' },
 ]);
 
 const headerIcons = computed(() =>
